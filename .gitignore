@@ -1,0 +1,23 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/portfolio_frontend/node_modules
+/portfolio_frontend/.pnp
+/portfolio_frontend/.pnp.js
+
+# testing
+/portfolio_frontend/coverage
+
+# production
+/portfolio_frontend/build
+
+# misc
+/portfolio_frontend/.DS_Store
+/portfolio_frontend/.env.local
+/portfolio_frontend/.env.development.local
+/portfolio_frontend/.env.test.local
+/portfolio_frontend/.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
