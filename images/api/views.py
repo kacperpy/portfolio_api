@@ -19,6 +19,6 @@ class ListImagesByFilterView(generics.ListAPIView):
 
     def get_queryset(self):
         request_filter = Filter.objects.get(
-            uuid=self.kwargs.get('uuid')
+            name=self.kwargs.get('name')
         )
         return request_filter.images.all()

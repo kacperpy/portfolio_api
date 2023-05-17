@@ -11,7 +11,7 @@ class Filter(models.Model):
         default=uuid.uuid4,
         editable=False
     )
-    name = name = models.CharField(
+    name = models.CharField(
         max_length=69,
         unique=True
     )
@@ -27,7 +27,7 @@ class Image(models.Model):
         editable=False
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    media_file = models.FileField(upload_to='mediafiles')
+    media_file = models.FileField()
     filter = models.ForeignKey(
         Filter,
         related_name='images',
