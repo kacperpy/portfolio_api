@@ -26,3 +26,4 @@ __pycache__/
 *.pyc
 .vscode/settings.json
 db.sqlite3
+/mediafiles
