@@ -1,0 +1,7 @@
+.App {
+  background-color: whitesmoke;
+  text-align: center;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
