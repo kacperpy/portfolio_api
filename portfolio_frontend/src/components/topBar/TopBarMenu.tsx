@@ -39,8 +39,30 @@ export const TopBarMenu = () => {
             Portfolio
           </Link>
         </Typography>
-        <Typography>Login</Typography>
-        <Typography>Contacts</Typography>
+        <Typography>
+          <Link
+            to="/"
+            className={
+              curLocation.pathname === "/??"
+                ? styles.linkTextActive
+                : styles.linkTextInactive
+            }
+          >
+            Login
+          </Link>
+        </Typography>
+        <Typography>
+          <Link
+            to="/"
+            className={
+              curLocation.pathname === "/???"
+                ? styles.linkTextActive
+                : styles.linkTextInactive
+            }
+          >
+            Contacts
+          </Link>
+        </Typography>
       </Grid>
     </Container>
   );
