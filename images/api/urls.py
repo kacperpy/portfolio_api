@@ -1,7 +1,5 @@
-from django.conf import settings
 from django.db import router
 from django.urls import include, path
-from django.conf.urls.static import static
 
 from rest_framework.routers import DefaultRouter
 
@@ -20,4 +18,4 @@ urlpatterns = [
         ListImagesByFilterView.as_view(),
         name='filtered-images'
     )
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

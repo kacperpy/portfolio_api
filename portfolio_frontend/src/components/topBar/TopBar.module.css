@@ -1,0 +1,16 @@
+.topBarContainer {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: whitesmoke;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding-right: 2.5rem !important;
+  min-height: 8%;
+}
+
+.searchIcon {
+  width: 2.5rem;
+}

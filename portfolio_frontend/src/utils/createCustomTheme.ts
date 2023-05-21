@@ -4,6 +4,8 @@ export const createCustomTheme = () => {
   return createTheme({
     typography: {
       fontFamily: `"Lato"`,
+      fontWeightRegular: "lighter",
+      fontWeightBold: "normal",
       allVariants: {
         color: "black",
       },

@@ -1,0 +1,42 @@
+.topBarMenuContainer {
+  display: flex !important;
+  align-items: center;
+  min-width: 100%;
+  min-height: 8rem;
+  padding-right: 4rem !important;
+  padding-left: 4rem !important;
+  position: fixed;
+  top: 0;
+}
+
+.searchIcon {
+  width: 2.5rem;
+}
+
+.logo {
+  width: 8rem !important;
+}
+
+.linkTextInactive {
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 500ms ease !important;
+  transition: color 200ms ease !important;
+  padding: 0.7rem;
+}
+
+.linkTextInactive:hover {
+  text-decoration: none;
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: whitesmoke;
+  padding: 0.7rem;
+}
+
+.linkTextActive {
+  text-decoration: none;
+  color: inherit;
+  background-color: black;
+  color: whitesmoke;
+  padding: 0.7rem;
+}
