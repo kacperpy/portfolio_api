@@ -5,8 +5,10 @@
   min-height: 8rem;
   padding-right: 4rem !important;
   padding-left: 4rem !important;
-  position: fixed;
+  position: sticky;
   top: 0;
+  z-index: 100;
+  background-color: whitesmoke;
 }
 
 .searchIcon {
@@ -14,14 +16,13 @@
 }
 
 .logo {
-  width: 8rem !important;
+  width: 7rem !important;
 }
 
 .linkTextInactive {
   text-decoration: none;
   color: inherit;
   transition: background-color 500ms ease !important;
-  transition: color 200ms ease !important;
   padding: 0.7rem;
 }
 

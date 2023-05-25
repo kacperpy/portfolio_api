@@ -1,0 +1,21 @@
+.pageContainer {
+  min-width: 94%;
+}
+
+.imageList {
+  width: 100%;
+}
+
+.imageListItem {
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.imageListItem:hover {
+  transform: scale(1.01);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
