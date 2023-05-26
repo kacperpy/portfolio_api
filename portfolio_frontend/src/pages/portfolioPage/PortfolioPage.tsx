@@ -6,6 +6,7 @@ import {
   Box,
   CircularProgress,
   Dialog,
+  ImageListItemBar,
 } from "@mui/material";
 import axios from "axios";
 import styles from "./PortfolioPage.module.css";
@@ -56,7 +57,7 @@ export const PortfolioPage = () => {
         </Box>
       ) : (
         <Box width="100%" height="100%">
-          <ImageList variant="quilted" cols={4} gap={20}>
+          <ImageList variant="quilted" cols={3} gap={60}>
             {images.map((image) => (
               <ImageListItem key={image.uuid} className={styles.imageListItem}>
                 <img
