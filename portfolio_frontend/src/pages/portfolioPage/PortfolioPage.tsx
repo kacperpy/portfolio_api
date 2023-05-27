@@ -1,12 +1,12 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Container,
-  ImageList,
-  ImageListItem,
   Box,
   CircularProgress,
   Dialog,
+  Grid,
   ImageListItemBar,
+  Typography,
 } from "@mui/material";
 import axios from "axios";
 import styles from "./PortfolioPage.module.css";
@@ -25,9 +25,9 @@ export const PortfolioPage = () => {
 
   useEffect(() => {
     axios
-      .get<Image[]>("http://localhost:8000/api/images/")
-      .then((response: { data: SetStateAction<Image[]> }) => {
-        setImages(response.data);
+      .get<Image[]>("http://localhost:8000/api/images/?size=9")
+      .then((response: { data: any }) => {
+        setImages(response.data.results);
         setIsLoading(false);
       })
       .catch((error: any) => {
@@ -57,18 +57,28 @@ export const PortfolioPage = () => {
         </Box>
       ) : (
         <Box width="100%" height="100%">
-          <ImageList variant="quilted" cols={3} gap={60}>
+          <Grid container spacing={10}>
             {images.map((image) => (
-              <ImageListItem key={image.uuid} className={styles.imageListItem}>
-                <img
-                  src={image.media_file}
-                  alt={image.created_at}
-                  onClick={() => handleImageClick(image)}
-                  className={styles.image}
-                />
-              </ImageListItem>
+              <Grid
+                item
+                xs={4}
+                key={image.uuid}
+                className={styles.imageListItem}
+              >
+                <div>
+                  <img
+                    src={image.media_file}
+                    alt={image.created_at}
+                    onClick={() => handleImageClick(image)}
+                    className={styles.image}
+                  />
+                  <Typography>
+                    <b>{image.created_at}</b>
+                  </Typography>
+                </div>
+              </Grid>
             ))}
-          </ImageList>
+          </Grid>
         </Box>
       )}
       <Dialog open={selectedImage !== null} onClose={handleClose} maxWidth="md">
