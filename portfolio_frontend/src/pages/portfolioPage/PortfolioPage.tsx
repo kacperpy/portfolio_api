@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import {
   Container,
   Box,
-  CircularProgress,
   Dialog,
   Grid,
-  ImageListItemBar,
   Typography,
+  Button,
 } from "@mui/material";
 import axios from "axios";
 import styles from "./PortfolioPage.module.css";
@@ -22,19 +21,30 @@ export const PortfolioPage = () => {
   const [images, setImages] = useState<Image[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selectedImage, setSelectedImage] = useState<Image | null>(null);
+  const [curPage, setCurPage] = useState(1);
 
-  useEffect(() => {
+  const fetchData = async () => {
     axios
-      .get<Image[]>("http://localhost:8000/api/images/?size=9")
+      .get<Image[]>(`http://localhost:8000/api/images/?page=${curPage}&size=3`)
       .then((response: { data: any }) => {
-        setImages(response.data.results);
-        setIsLoading(false);
+        setImages((prevImages) => [...prevImages, ...response.data.results]);
+        setCurPage((prevPage) => prevPage + 1);
+        console.log("FETCHING");
       })
       .catch((error: any) => {
         console.error("Error fetching images:", error);
+      })
+      .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  };
+
+  useEffect(() => {
+    if (isLoading) {
+      fetchData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading]);
 
   const handleImageClick = (image: Image) => {
     setSelectedImage(image);
@@ -44,43 +54,40 @@ export const PortfolioPage = () => {
     setSelectedImage(null);
   };
 
+  const handleLoadMore = () => {
+    setIsLoading(true);
+  };
+
   return (
     <Container className={styles.pageContainer}>
-      {isLoading ? (
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          height={200}
-        >
-          <CircularProgress />
-        </Box>
-      ) : (
-        <Box width="100%" height="100%">
-          <Grid container spacing={10}>
-            {images.map((image) => (
-              <Grid
-                item
-                xs={4}
-                key={image.uuid}
-                className={styles.imageListItem}
-              >
-                <div>
-                  <img
-                    src={image.media_file}
-                    alt={image.created_at}
-                    onClick={() => handleImageClick(image)}
-                    className={styles.image}
-                  />
+      <Box width="100%" height="100%">
+        <Grid container spacing={10}>
+          {images.map((image) => (
+            <Grid item xs={4} key={image.uuid} className={styles.imageListItem}>
+              <div>
+                <img
+                  src={image.media_file}
+                  alt={image.created_at}
+                  onClick={() => handleImageClick(image)}
+                  className={styles.image}
+                />
+                <div style={{ textAlign: "left" }}>
                   <Typography>
-                    <b>{image.created_at}</b>
+                    <b>{image.uuid}</b>
                   </Typography>
+                  <Typography>{image.created_at}</Typography>
                 </div>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      )}
+              </div>
+            </Grid>
+          ))}
+        </Grid>
+        <Button
+          onClick={handleLoadMore}
+          style={{ marginTop: 50, marginBottom: 50 }}
+        >
+          Load more
+        </Button>
+      </Box>
       <Dialog open={selectedImage !== null} onClose={handleClose} maxWidth="md">
         {selectedImage && (
           <img
