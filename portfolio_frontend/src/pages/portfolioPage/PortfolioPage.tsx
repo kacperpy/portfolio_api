@@ -92,7 +92,7 @@ export const PortfolioPage = () => {
           Load more
         </Button>
       </Box>
-      <Dialog open={selectedImage !== null} onClose={handleClose} maxWidth="md">
+      <Dialog open={selectedImage !== null} onClose={handleClose} maxWidth="lg">
         {selectedImage && (
           <img
             src={selectedImage.media_file}
