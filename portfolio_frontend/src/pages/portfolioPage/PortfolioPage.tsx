@@ -73,8 +73,12 @@ export const PortfolioPage = () => {
                 />
                 <div style={{ textAlign: "left" }}>
                   <Typography fontSize={12}>{image.uuid}</Typography>
-                  <Typography fontSize={18} fontWeight={100}>
-                    <b>{image.created_at}</b>
+                  <Typography
+                    style={{ fontWeight: "bold" }}
+                    fontSize={18}
+                    fontWeight={100}
+                  >
+                    {image.created_at}
                   </Typography>
                 </div>
               </div>
