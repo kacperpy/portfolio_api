@@ -75,13 +75,13 @@ export const PortfolioPage = () => {
                   className={styles.image}
                 />
                 <div style={{ textAlign: "left" }}>
-                  <Typography fontSize={12}>{image.client}</Typography>
+                  <Typography fontSize={12}>{image.filter}</Typography>
                   <Typography
                     style={{ fontWeight: "bold" }}
                     fontSize={18}
                     fontWeight={100}
                   >
-                    {image.caption}
+                    {image.client}
                   </Typography>
                 </div>
               </div>
