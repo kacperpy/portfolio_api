@@ -19,25 +19,40 @@
   width: 7rem !important;
 }
 
-.linkTextInactive {
+.linkTextInactive,
+.linkTextActive {
+  position: relative;
   text-decoration: none;
   color: inherit;
-  transition: background-color 500ms ease !important;
   padding: 0.7rem;
+  font-size: 0.8em;
+  transition: color 0.3s ease-in-out; /* adjust the time as needed */
+}
+
+.linkTextInactive::after,
+.linkTextActive::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease-in-out; /* adjust the time as needed */
+}
+
+.linkTextInactive::after {
+  width: 0;
+}
+
+.linkTextActive::after {
+  width: 100%;
+}
+
+.linkTextInactive:hover::after,
+.linkTextActive:hover::after {
+  width: 100%;
 }
 
 .linkTextInactive:hover {
-  text-decoration: none;
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: whitesmoke;
-  padding: 0.7rem;
-}
-
-.linkTextActive {
-  text-decoration: none;
-  color: inherit;
-  background-color: black;
-  color: whitesmoke;
-  padding: 0.7rem;
+  color: #9b9b9b;
 }
