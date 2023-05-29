@@ -7,6 +7,8 @@ from images.models import Image
 class ImageReadSerializer(serializers.ModelSerializer):
     created_at = serializers.SerializerMethodField()
     filter = serializers.SerializerMethodField()
+    client = serializers.SerializerMethodField()
+    file_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Image
@@ -14,7 +16,10 @@ class ImageReadSerializer(serializers.ModelSerializer):
             'uuid',
             'created_at',
             'media_file',
-            'filter'
+            'filter',
+            'client',
+            'file_name',
+            'caption'
         ]
 
     def get_created_at(self, instance):
@@ -22,3 +27,9 @@ class ImageReadSerializer(serializers.ModelSerializer):
 
     def get_filter(self, instance):
         return instance.filter.name
+
+    def get_client(self, instance):
+        return instance.client.name
+
+    def get_file_name(self, instance):
+        return instance.media_file.name

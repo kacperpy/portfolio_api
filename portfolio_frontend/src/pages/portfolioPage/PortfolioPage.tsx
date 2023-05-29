@@ -15,6 +15,9 @@ interface Image {
   created_at: string;
   media_file: string;
   filter: string;
+  client: string;
+  file_name: string;
+  caption: string;
 }
 
 export const PortfolioPage = () => {
@@ -72,13 +75,13 @@ export const PortfolioPage = () => {
                   className={styles.image}
                 />
                 <div style={{ textAlign: "left" }}>
-                  <Typography fontSize={12}>{image.filter}</Typography>
+                  <Typography fontSize={12}>{image.client}</Typography>
                   <Typography
                     style={{ fontWeight: "bold" }}
                     fontSize={18}
                     fontWeight={100}
                   >
-                    {image.created_at}
+                    {image.caption}
                   </Typography>
                 </div>
               </div>
