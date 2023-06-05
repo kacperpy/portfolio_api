@@ -1,6 +1,8 @@
 import { Dialog } from "@mui/material";
+import { Carousel } from "react-responsive-carousel";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 interface Image {
   uuid: string;
@@ -19,6 +21,7 @@ interface ImageDialogProps {
 
 export const ImageDialog: React.FC<ImageDialogProps> = ({ image, onClose }) => {
   const [images, setImages] = useState<Image[]>([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const fetchData = async () => {
@@ -28,7 +31,12 @@ export const ImageDialog: React.FC<ImageDialogProps> = ({ image, onClose }) => {
       )
       .then((response: { data: any }) => {
         setImages(response.data.results);
-        console.log("FETCHING by filter: " + image?.filter);
+        // Find the initial image index
+        setCurrentImageIndex(
+          response.data.results.findIndex(
+            (img: Image) => img.uuid === image?.uuid
+          )
+        );
       })
       .catch((error: any) => {
         console.error("Error fetching images:", error);
@@ -41,18 +49,29 @@ export const ImageDialog: React.FC<ImageDialogProps> = ({ image, onClose }) => {
   useEffect(() => {
     if (isLoading) {
       fetchData();
+      console.log("fetching with filter: " + image?.filter);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
   return (
     <Dialog open={image !== null} onClose={onClose} maxWidth="lg">
-      {image && (
-        <img
-          src={image.media_file}
-          alt={image.created_at}
-          style={{ width: "100%", height: "auto" }}
-        />
+      {images.length > 0 && (
+        <Carousel
+          showThumbs={false}
+          selectedItem={currentImageIndex}
+          infiniteLoop={true}
+        >
+          {images.map((img, index) => (
+            <div key={index}>
+              <img
+                src={img.media_file}
+                alt={img.created_at}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
+          ))}
+        </Carousel>
       )}
     </Dialog>
   );

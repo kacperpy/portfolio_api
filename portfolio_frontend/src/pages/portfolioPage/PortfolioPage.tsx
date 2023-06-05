@@ -49,6 +49,7 @@ export const PortfolioPage = () => {
 
   const handleClose = () => {
     setSelectedImage(null);
+    console.log("closing");
   };
 
   const handleLoadMore = () => {
