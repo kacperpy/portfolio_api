@@ -1,21 +1,2 @@
-.pageContainer {
-  min-width: 94%;
-}
-
-.imageList {
-  width: 100%;
-}
-
-.imageListItem {
-  cursor: pointer;
-}
-
-.image {
-  width: 100%;
-  height: 100%;
-  transition: transform 0.1s;
-}
-
-.image:hover {
-  transform: scale(1.015);
+.portfolioPageContainer {
 }
