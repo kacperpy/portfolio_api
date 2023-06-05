@@ -1,14 +1,8 @@
 import { useEffect, useState } from "react";
-import {
-  Container,
-  Box,
-  Dialog,
-  Grid,
-  Typography,
-  Button,
-} from "@mui/material";
+import { Container, Box, Grid, Typography, Button } from "@mui/material";
 import axios from "axios";
 import styles from "./PortfolioPage.module.css";
+import { ImageDialog } from "./components/ImageDialog";
 
 interface Image {
   uuid: string;
@@ -95,15 +89,9 @@ export const PortfolioPage = () => {
           Load more
         </Button>
       </Box>
-      <Dialog open={selectedImage !== null} onClose={handleClose} maxWidth="lg">
-        {selectedImage && (
-          <img
-            src={selectedImage.media_file}
-            alt={selectedImage.created_at}
-            style={{ width: "100%", height: "auto" }}
-          />
-        )}
-      </Dialog>
+      {selectedImage !== null ? (
+        <ImageDialog image={selectedImage} onClose={handleClose} />
+      ) : null}
     </Container>
   );
 };

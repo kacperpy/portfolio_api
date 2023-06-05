@@ -34,7 +34,7 @@
   content: "";
   position: absolute;
   left: 0;
-  bottom: -5px;
+  bottom: -1px;
   height: 1px;
   background-color: currentColor;
   transition: width 0.3s ease-in-out; /* adjust the time as needed */
