@@ -1,16 +1,58 @@
-.topBarContainer {
+.topBarMenuContainer {
   display: flex !important;
-  flex-direction: row;
-  justify-content: flex-end;
   align-items: center;
-  background-color: whitesmoke;
-  position: fixed;
+  min-width: 100%;
+  min-height: 8rem;
+  padding-right: 4rem !important;
+  padding-left: 4rem !important;
+  position: sticky;
   top: 0;
-  right: 0;
-  padding-right: 2.5rem !important;
-  min-height: 8%;
+  z-index: 100;
+  background-color: whitesmoke;
 }
 
 .searchIcon {
   width: 2.5rem;
+}
+
+.logo {
+  width: 7rem !important;
+}
+
+.linkTextInactive,
+.linkTextActive {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.7rem;
+  font-size: 0.8em;
+  transition: color 0.3s ease-in-out; /* adjust the time as needed */
+}
+
+.linkTextInactive::after,
+.linkTextActive::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease-in-out; /* adjust the time as needed */
+}
+
+.linkTextInactive::after {
+  width: 0;
+}
+
+.linkTextActive::after {
+  width: 100%;
+}
+
+.linkTextInactive:hover::after,
+.linkTextActive:hover::after {
+  width: 100%;
+}
+
+.linkTextInactive:hover {
+  color: #9b9b9b;
 }

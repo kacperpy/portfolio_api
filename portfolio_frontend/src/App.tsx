@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { createCustomTheme } from "./utils/createCustomTheme";
 import { ThemeProvider } from "@emotion/react";
 import { HomePage } from "./pages/homePage/HomePage";
-import { TopBarMenu } from "./components/topBar/TopBarMenu";
+import { TopBar } from "./components/topBar/TopBar";
 import { PortfolioPage } from "./pages/portfolioPage/PortfolioPage";
 // import { SideBar } from "./components/sideBar/SideBar";
 
@@ -13,7 +13,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <TopBarMenu />
+        <TopBar />
         {/* <SideBar /> */}
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
