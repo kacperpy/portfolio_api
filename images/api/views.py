@@ -25,3 +25,12 @@ class ListImagesByFilterView(generics.ListAPIView):
             name=self.kwargs.get('name')
         )
         return request_filter.images.all()
+
+
+class ListHomePageImages(generics.ListAPIView):
+    serializer_class = ImageReadSerializer
+    pagination_class = CustomResultSetPaginator
+    permission_classes = []
+
+    def get_queryset(self):
+        return Image.objects.filter(is_homepage=True)

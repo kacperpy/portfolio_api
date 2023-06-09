@@ -60,6 +60,7 @@ export const ImageDialog: React.FC<ImageDialogProps> = ({ image, onClose }) => {
         <Carousel
           showThumbs={false}
           selectedItem={currentImageIndex}
+          showStatus={false}
           infiniteLoop={true}
         >
           {images.map((img, index) => (

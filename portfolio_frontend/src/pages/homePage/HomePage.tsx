@@ -12,6 +12,7 @@ interface Image {
   client: string;
   file_name: string;
   caption: string;
+  is_landscape: boolean;
 }
 
 export const HomePage = () => {
@@ -22,7 +23,9 @@ export const HomePage = () => {
 
   const fetchData = async () => {
     axios
-      .get<Image[]>(`http://localhost:8000/api/images/?page=${curPage}&size=6`)
+      .get<Image[]>(
+        `http://localhost:8000/api/homepage-images/?page=${curPage}&size=6`
+      )
       .then((response: { data: any }) => {
         setImages((prevImages) => [...prevImages, ...response.data.results]);
         setCurPage((prevPage) => prevPage + 1);
@@ -67,7 +70,11 @@ export const HomePage = () => {
                   src={image.media_file}
                   alt={image.created_at}
                   onClick={() => handleImageClick(image)}
-                  className={styles.image}
+                  className={
+                    image.is_landscape
+                      ? styles.imageHorizontal
+                      : styles.imageVertical
+                  }
                 />
                 <div style={{ textAlign: "left" }}>
                   <Typography fontSize={12}>{image.filter}</Typography>

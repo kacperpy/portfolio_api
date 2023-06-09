@@ -9,6 +9,7 @@ class ImageReadSerializer(serializers.ModelSerializer):
     filter = serializers.SerializerMethodField()
     client = serializers.SerializerMethodField()
     file_name = serializers.SerializerMethodField()
+    is_landscape = serializers.SerializerMethodField()
 
     class Meta:
         model = Image
@@ -19,7 +20,8 @@ class ImageReadSerializer(serializers.ModelSerializer):
             'filter',
             'client',
             'file_name',
-            'caption'
+            'caption',
+            'is_landscape'
         ]
 
     def get_created_at(self, instance):
@@ -33,3 +35,6 @@ class ImageReadSerializer(serializers.ModelSerializer):
 
     def get_file_name(self, instance):
         return instance.media_file.name
+
+    def get_is_landscape(self, instance):
+        return instance.media_file.width > instance.media_file.height

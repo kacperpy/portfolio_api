@@ -42,7 +42,7 @@ class Image(models.Model):
         editable=False
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    media_file = models.FileField()
+    media_file = models.ImageField()
     filter = models.ForeignKey(
         Filter,
         related_name='images',
@@ -57,6 +57,9 @@ class Image(models.Model):
         max_length=256
     )
     is_private = models.BooleanField(
+        default=False
+    )
+    is_homepage = models.BooleanField(
         default=False
     )
 
