@@ -22,7 +22,7 @@ export const HomePage = () => {
 
   const fetchData = async () => {
     axios
-      .get<Image[]>(`http://localhost:8000/api/images/?page=${curPage}&size=3`)
+      .get<Image[]>(`http://localhost:8000/api/images/?page=${curPage}&size=6`)
       .then((response: { data: any }) => {
         setImages((prevImages) => [...prevImages, ...response.data.results]);
         setCurPage((prevPage) => prevPage + 1);

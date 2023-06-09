@@ -2,9 +2,10 @@
   display: flex !important;
   align-items: center;
   min-width: 100%;
-  min-height: 8rem;
+  min-height: 5rem;
   padding-right: 4rem !important;
   padding-left: 4rem !important;
+  margin-bottom: 2rem;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -16,7 +17,7 @@
 }
 
 .logo {
-  width: 7rem !important;
+  width: 6rem !important;
 }
 
 .linkTextInactive,
