@@ -1,28 +1,11 @@
-.sideBarContainer {
-  display: flex !important;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+.sideBar {
+  padding-top: 3rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  width: 22rem;
   background-color: whitesmoke;
-  max-width: 12% !important;
-  min-height: 100%;
-  position: fixed;
-  left: 0;
-}
-
-.pagesContainer {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
-}
-
-.logo {
-  width: 8rem !important;
-  padding-top: 2rem;
-}
-
-.menuIcon {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-  width: 2.5rem;
+  align-items: center !important;
 }
