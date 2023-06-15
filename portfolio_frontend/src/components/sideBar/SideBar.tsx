@@ -1,14 +1,7 @@
-import {
-  Box,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Typography,
-} from "@mui/material";
+import { Button, Container, Drawer, Typography } from "@mui/material";
 import { MouseEvent, KeyboardEvent, FC } from "react";
 import styles from "./SideBar.module.css";
+import { data } from "./data/sideBarContent";
 
 interface SideBarProps {
   open: boolean;
@@ -35,27 +28,25 @@ const SideBar: FC<SideBarProps> = ({ open, onClose }) => {
         role="presentation"
         onClick={toggleDrawer(false)}
         onKeyDown={toggleDrawer(false)}
-        className={styles.sideBar}
+        className={styles.sideBarContainer}
       >
-        <Box className={styles.sideBar} role="presentation">
+        <Container className={styles.sideBarContainer} role="presentation">
           <Typography variant="h4">Valeriano Di Domenico</Typography>
-          <hr />
-          <Typography>
-            Hundert Gedanken schwirren mir durch den Kopf, wenn ich vor einer
-            fotografischen Aufgabe stehe
+          <Typography variant="subtitle1">
+            "Hundert Gedanken schwirren mir durch den Kopf, wenn ich vor einer
+            fotografischen Aufgabe stehe"
           </Typography>
-          <List>
-            {["instagram", "facebook", "twitter", "linkedIn"].map(
-              (text, index) => (
-                <ListItem key={text} disablePadding>
-                  <ListItemButton>
-                    <ListItemText primary={text} />
-                  </ListItemButton>
-                </ListItem>
-              )
-            )}
-          </List>
-        </Box>
+          <Container className={styles.socialMediaContainer}>
+            {data.map((item, index) => (
+              <Button key={index} className={styles.socialMediaButton}>
+                <img src={item.icon} alt={item.alt} className={styles.icon} />
+                <Typography className={styles.socialMediaText}>
+                  {item.name}
+                </Typography>
+              </Button>
+            ))}
+          </Container>
+        </Container>
       </div>
     </Drawer>
   );

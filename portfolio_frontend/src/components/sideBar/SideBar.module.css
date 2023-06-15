@@ -1,11 +1,32 @@
-.sideBar {
+.sideBarContainer {
   padding-top: 3rem;
   padding-left: 4rem;
   padding-right: 4rem;
-  width: 22rem;
+  width: 24rem;
   background-color: whitesmoke;
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center !important;
+  justify-content: center;
+  justify-items: center;
+  align-items: flex-end;
+}
+
+.icon {
+  width: 14px;
+  padding-right: 2px;
+}
+
+.socialMediaContainer {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  gap: 20px;
+}
+
+.socialMediaButton {
+}
+
+.socialMediaText {
+  font-size: 10px !important;
 }
