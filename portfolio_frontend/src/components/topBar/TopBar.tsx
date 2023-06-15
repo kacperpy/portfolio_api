@@ -1,10 +1,11 @@
 import { Container, Grid, Typography } from "@mui/material";
 import styles from "./TopBar.module.css";
-import logo from "./logo_medium.png";
-import menu_icon from "./menu_icon.svg";
+import logo from "./data/logo_medium.png";
+import menu_icon from "./data/menu_icon.svg";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import SideBar from "../sideBar/SideBar";
+import { data } from "./data/topBarContent";
 
 export const TopBar = () => {
   const curLocation = useLocation();
@@ -26,54 +27,21 @@ export const TopBar = () => {
         justifyContent="flex-end"
         alignItems="center"
       >
-        <Typography>
-          <Link
-            to="/"
-            className={
-              curLocation.pathname === "/"
-                ? styles.linkTextActive
-                : styles.linkTextInactive
-            }
-          >
-            Home
-          </Link>
-        </Typography>
-        <Typography>
-          <Link
-            to="/portfolio"
-            className={
-              curLocation.pathname === "/portfolio"
-                ? styles.linkTextActive
-                : styles.linkTextInactive
-            }
-          >
-            Portfolio
-          </Link>
-        </Typography>
-        <Typography>
-          <Link
-            to="/"
-            className={
-              curLocation.pathname === "/??"
-                ? styles.linkTextActive
-                : styles.linkTextInactive
-            }
-          >
-            Login
-          </Link>
-        </Typography>
-        <Typography>
-          <Link
-            to="/"
-            className={
-              curLocation.pathname === "/???"
-                ? styles.linkTextActive
-                : styles.linkTextInactive
-            }
-          >
-            Contacts
-          </Link>
-        </Typography>
+        {data.map((item, index) => (
+          <Typography>
+            <Link
+              key={index}
+              to={item.url}
+              className={
+                curLocation.pathname === item.url
+                  ? styles.linkTextActive
+                  : styles.linkTextInactive
+              }
+            >
+              {item.name}
+            </Link>
+          </Typography>
+        ))}
       </Grid>
     </Container>
   );
