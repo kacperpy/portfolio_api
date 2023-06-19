@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Divider, Grid, Typography } from "@mui/material";
 import styles from "./ImageListV1.module.css";
 
 interface Image {
@@ -18,10 +18,7 @@ interface ImageListV1Props {
 }
 
 export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
-  const handleMouseMove = (
-    event: React.MouseEvent<HTMLDivElement>,
-    image: Image
-  ) => {
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const tiltContainer = event.currentTarget;
     const tiltBox = tiltContainer.getBoundingClientRect();
     const containerWidth = tiltBox.width;
@@ -63,11 +60,16 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
   };
 
   return (
-    <Grid container spacing={10}>
+    <Grid container spacing={8}>
       {images.map((image) => (
-        <Grid item xs={4} key={image.uuid} className={styles.imageListItem}>
+        <Grid
+          item
+          xs={image.is_landscape ? 4 : 3}
+          key={image.uuid}
+          className={styles.imageListItem}
+        >
           <div
-            onMouseMove={(event) => handleMouseMove(event, image)}
+            onMouseMove={(event) => handleMouseMove(event)}
             onMouseLeave={handleMouseLeave}
           >
             <div className={styles.imageContainer}>
@@ -82,16 +84,17 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
                 }
               />
             </div>
-            <div style={{ textAlign: "left" }}>
-              <Typography fontSize={12}>{image.filter}</Typography>
-              <Typography
-                style={{ fontWeight: "bold" }}
-                fontSize={18}
-                fontWeight={100}
-              >
-                {image.client}
-              </Typography>
-            </div>
+          </div>
+          <div style={{ textAlign: "left" }}>
+            <Typography fontSize={12}>{image.filter}</Typography>
+            <Divider style={{width: "2rem"}}/>
+            <Typography
+              style={{ fontWeight: "bold" }}
+              fontSize={18}
+              fontWeight={100}
+            >
+              {image.client}
+            </Typography>
           </div>
         </Grid>
       ))}
