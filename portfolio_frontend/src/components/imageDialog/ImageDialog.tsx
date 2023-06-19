@@ -19,7 +19,7 @@ interface ImageDialogProps {
   onClose: () => void;
 }
 
-export const ImageDialog: React.FC<ImageDialogProps> = ({ image, onClose }) => {
+export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
   const [images, setImages] = useState<Image[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
