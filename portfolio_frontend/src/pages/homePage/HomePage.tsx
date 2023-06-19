@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Container, Box, Grid, Typography, Button } from "@mui/material";
+import { Container, Box, Button } from "@mui/material";
+import { ImageDialog } from "../../components/imageDialog/ImageDialog";
+import { ImageListV1 } from "./components/ImageListV1";
 import axios from "axios";
 import styles from "./HomePage.module.css";
-import { ImageDialog } from "../../components/imageDialog/ImageDialog";
 
 interface Image {
   uuid: string;
@@ -62,34 +63,7 @@ export const HomePage = () => {
   return (
     <Container className={styles.pageContainer}>
       <Box width="100%" height="100%">
-        <Grid container spacing={10}>
-          {images.map((image) => (
-            <Grid item xs={4} key={image.uuid} className={styles.imageListItem}>
-              <div>
-                <img
-                  src={image.media_file}
-                  alt={image.created_at}
-                  onClick={() => handleImageClick(image)}
-                  className={
-                    image.is_landscape
-                      ? styles.imageHorizontal
-                      : styles.imageVertical
-                  }
-                />
-                <div style={{ textAlign: "left" }}>
-                  <Typography fontSize={12}>{image.filter}</Typography>
-                  <Typography
-                    style={{ fontWeight: "bold" }}
-                    fontSize={18}
-                    fontWeight={100}
-                  >
-                    {image.client}
-                  </Typography>
-                </div>
-              </div>
-            </Grid>
-          ))}
-        </Grid>
+        <ImageListV1 images={images} handleImageClick={handleImageClick} />
         <Button
           onClick={handleLoadMore}
           style={{ marginTop: 50, marginBottom: 50 }}
