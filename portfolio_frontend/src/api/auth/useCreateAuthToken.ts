@@ -34,7 +34,7 @@ export const useCreateAuthToken = () => {
       })
       .finally(() => {
         setIsLoadingAuthToken(false);
-        navigate("/");
+        navigate("/client");
       });
   };
 
