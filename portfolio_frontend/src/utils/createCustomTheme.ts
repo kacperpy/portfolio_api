@@ -10,5 +10,10 @@ export const createCustomTheme = () => {
         color: "black",
       },
     },
+    palette: {
+      primary: {
+        main: "#000000", // Set the primary color to black
+      },
+    },
   });
 };

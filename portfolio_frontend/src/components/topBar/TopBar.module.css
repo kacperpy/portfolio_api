@@ -25,6 +25,14 @@
   width: 6rem !important;
 }
 
+.authedUser {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.7rem;
+  font-size: 0.8em;
+}
+
 .linkTextInactive,
 .linkTextActive {
   position: relative;
@@ -39,7 +47,7 @@
 .linkTextActive::after {
   content: "";
   position: absolute;
-  left: 0;
+  left: 12px;
   bottom: -1px;
   height: 1px;
   background-color: currentColor;
@@ -51,12 +59,12 @@
 }
 
 .linkTextActive::after {
-  width: 100%;
+  width: 30%;
 }
 
 .linkTextInactive:hover::after,
 .linkTextActive:hover::after {
-  width: 100%;
+  width: 30%;
 }
 
 .linkTextInactive:hover {

@@ -6,18 +6,22 @@ import { ThemeProvider } from "@emotion/react";
 import { HomePage } from "./pages/homePage/HomePage";
 import { TopBar } from "./components/topBar/TopBar";
 import { PortfolioPage } from "./pages/portfolioPage/PortfolioPage";
+import { LoginPage } from "./pages/loginPage/LoginPage";
+import { ClientPage } from "./pages/clientPage/ClientPage";
 // import { SideBar } from "./components/sideBar/SideBar";
 
 function App() {
   const theme = createCustomTheme();
+
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
         <TopBar />
-        {/* <SideBar /> */}
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/portfolio" element={<PortfolioPage />}></Route>
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/client" element={<ClientPage />}></Route>
         </Routes>
       </div>
     </ThemeProvider>

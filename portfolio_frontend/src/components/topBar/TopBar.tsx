@@ -6,10 +6,16 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import SideBar from "../sideBar/SideBar";
 import { data } from "./data/topBarContent";
+import { useAuth } from "../../utils/useAuth";
 
 export const TopBar = () => {
   const curLocation = useLocation();
   const [open, setOpen] = useState(false);
+  const { user, updateUser } = useAuth();
+
+  window.addEventListener("storage", () => {
+    updateUser();
+  });
 
   return (
     <Container className={styles.topBarMenuContainer}>
@@ -42,6 +48,33 @@ export const TopBar = () => {
             </Link>
           </Typography>
         ))}
+        <Typography>
+          {user ? (
+            <Link
+              key={data.length + 1}
+              to="/client"
+              className={
+                curLocation.pathname === "/client"
+                  ? styles.linkTextActive
+                  : styles.linkTextInactive
+              }
+            >
+              {user}
+            </Link>
+          ) : (
+            <Link
+              key={data.length + 1}
+              to="/login"
+              className={
+                curLocation.pathname === "/login"
+                  ? styles.linkTextActive
+                  : styles.linkTextInactive
+              }
+            >
+              Login
+            </Link>
+          )}
+        </Typography>
       </Grid>
     </Container>
   );
