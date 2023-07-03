@@ -1,8 +1,7 @@
 import { Dialog } from "@mui/material";
-import { Carousel } from "react-responsive-carousel";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Carousel from "react-material-ui-carousel";
 
 interface Image {
   uuid: string;
@@ -12,6 +11,7 @@ interface Image {
   client: string;
   file_name: string;
   caption: string;
+  is_landscape: boolean;
 }
 
 interface ImageDialogProps {
@@ -23,6 +23,10 @@ export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
   const [images, setImages] = useState<Image[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [curDimensions, setCurDimensions] = useState({
+    width: "auto",
+    height: "auto",
+  });
 
   const fetchData = async () => {
     axios
@@ -32,11 +36,11 @@ export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
       .then((response: { data: any }) => {
         setImages(response.data.results);
         // Find the initial image index
-        setCurrentImageIndex(
-          response.data.results.findIndex(
-            (img: Image) => img.uuid === image?.uuid
-          )
+        const curIndex = response.data.results.findIndex(
+          (img: Image) => img.uuid === image?.uuid
         );
+        setCurrentImageIndex(curIndex);
+        console.log(curIndex);
       })
       .catch((error: any) => {
         console.error("Error fetching images:", error);
@@ -54,23 +58,79 @@ export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
+  const handleImageChange = (now?: number) => {
+    if (now !== undefined) {
+      const currentImage = images[now];
+      const imageElement = document.createElement("img");
+      imageElement.src = currentImage.media_file;
+
+      imageElement.onload = () => {
+        const imageWidth = imageElement.width;
+        const imageHeight = imageElement.height;
+
+        const desiredHeight = (80 * window.innerHeight) / 100;
+        const scaleFactor = desiredHeight / imageHeight;
+        const desiredWidth = imageWidth * scaleFactor;
+
+        setCurDimensions({
+          width: desiredWidth + "px",
+          height: desiredHeight + "px",
+        });
+
+        console.log("Currently displayed image:", currentImage);
+        console.log("Image dimensions:", desiredWidth, "x", desiredHeight);
+      };
+    }
+  };
+
+  useEffect(() => {
+    if (images.length !== 0) {
+      console.log("useEffect " + images[currentImageIndex]);
+      handleImageChange(currentImageIndex);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [images]);
+
   return (
-    <Dialog open={image !== null} onClose={onClose} maxWidth="lg">
+    <Dialog open={image !== null} onClose={onClose} maxWidth={false}>
       {images.length > 0 && (
         <Carousel
-          showThumbs={false}
-          selectedItem={currentImageIndex}
-          showStatus={false}
-          infiniteLoop={true}
+          index={currentImageIndex}
+          autoPlay={false}
+          animation="fade"
+          navButtonsAlwaysVisible={true}
+          cycleNavigation={true}
+          sx={{
+            width: curDimensions.width,
+            transition: "width 0.5s",
+          }}
+          onChange={handleImageChange}
+          indicatorIconButtonProps={{
+            style: {
+              fontSize: "12px",
+            },
+          }}
+          indicatorContainerProps={{
+            style: {
+              position: "absolute",
+              zIndex: 10,
+              bottom: "10px",
+              textAlign: "center",
+              width: "100%",
+            },
+          }}
         >
           {images.map((img, index) => (
-            <div key={index}>
-              <img
-                src={img.media_file}
-                alt={img.created_at}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </div>
+            <img
+              src={img.media_file}
+              alt={img.created_at}
+              key={index}
+              style={{
+                height: curDimensions.height,
+                width: "auto",
+                objectFit: "contain",
+              }}
+            />
           ))}
         </Carousel>
       )}
