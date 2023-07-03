@@ -2,6 +2,8 @@ import { Dialog } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 
 interface Image {
   uuid: string;
@@ -22,13 +24,14 @@ interface ImageDialogProps {
 export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
   const [images, setImages] = useState<Image[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [curDimensions, setCurDimensions] = useState({
-    width: "auto",
-    height: "auto",
-  });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [curDimensions, setCurDimensions] = useState<{
+    width: number;
+    height: number;
+  } | null>(null);
 
   const fetchData = async () => {
+    setIsLoading(true);
     axios
       .get<Image[]>(
         `http://localhost:8000/api/filters/${image?.filter}/images/`
@@ -51,12 +54,12 @@ export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
   };
 
   useEffect(() => {
-    if (isLoading) {
+    if (images.length === 0) {
       fetchData();
       console.log("fetching with filter: " + image?.filter);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading]);
+  }, []);
 
   const handleImageChange = (now?: number) => {
     if (now !== undefined) {
@@ -73,8 +76,8 @@ export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
         const desiredWidth = imageWidth * scaleFactor;
 
         setCurDimensions({
-          width: desiredWidth + "px",
-          height: desiredHeight + "px",
+          width: desiredWidth,
+          height: desiredHeight,
         });
 
         console.log("Currently displayed image:", currentImage);
@@ -85,7 +88,6 @@ export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
 
   useEffect(() => {
     if (images.length !== 0) {
-      console.log("useEffect " + images[currentImageIndex]);
       handleImageChange(currentImageIndex);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -93,30 +95,26 @@ export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
 
   return (
     <Dialog open={image !== null} onClose={onClose} maxWidth={false}>
-      {images.length > 0 && (
+      {curDimensions !== null ? (
         <Carousel
           index={currentImageIndex}
           autoPlay={false}
           animation="fade"
+          indicators={false}
           navButtonsAlwaysVisible={true}
           cycleNavigation={true}
           sx={{
             width: curDimensions.width,
             transition: "width 0.5s",
+            backgroundColor: "transparent",
           }}
           onChange={handleImageChange}
-          indicatorIconButtonProps={{
+          PrevIcon={<ArrowLeftIcon />}
+          NextIcon={<ArrowRightIcon />}
+          navButtonsProps={{
             style: {
-              fontSize: "12px",
-            },
-          }}
-          indicatorContainerProps={{
-            style: {
-              position: "absolute",
-              zIndex: 10,
-              bottom: "10px",
-              textAlign: "center",
-              width: "100%",
+              background: "none",
+              boxShadow: "none",
             },
           }}
         >
@@ -126,14 +124,13 @@ export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
               alt={img.created_at}
               key={index}
               style={{
-                height: curDimensions.height,
-                width: "auto",
+                height: curDimensions.height + "px",
                 objectFit: "contain",
               }}
             />
           ))}
         </Carousel>
-      )}
+      ) : null}
     </Dialog>
   );
 };
