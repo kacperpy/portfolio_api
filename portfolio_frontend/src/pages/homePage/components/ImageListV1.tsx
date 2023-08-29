@@ -62,7 +62,15 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
   return (
     <Grid container spacing={10}>
       {images.map((image) => (
-        <Grid item xs={4} key={image.uuid} className={styles.imageListItem}>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          xl={4}
+          key={image.uuid}
+          className={styles.imageListItem}
+        >
           <div
             onMouseMove={(event) => handleMouseMove(event)}
             onMouseLeave={handleMouseLeave}
@@ -80,7 +88,12 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
               />
             </div>
           </div>
-          <div style={{ textAlign: "left" }}>
+          <div
+            style={{
+              textAlign: "left",
+              marginLeft: image.is_landscape ? 0 : "15%",
+            }}
+          >
             <Typography fontSize={12}>{image.filter}</Typography>
             <Divider style={{ width: "2rem" }} />
             <Typography

@@ -94,17 +94,18 @@ export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
   }, [images]);
 
   return (
-    <Dialog open={image !== null} onClose={onClose} maxWidth={false}>
+    <Dialog open={!isLoading} onClose={onClose} maxWidth={false}>
       {curDimensions !== null ? (
         <Carousel
           index={currentImageIndex}
           autoPlay={false}
-          animation="fade"
+          animation="slide"
           indicators={false}
           navButtonsAlwaysVisible={true}
           cycleNavigation={true}
           sx={{
             width: curDimensions.width,
+            height: curDimensions.height,
             transition: "width 0.5s",
             backgroundColor: "transparent",
           }}
