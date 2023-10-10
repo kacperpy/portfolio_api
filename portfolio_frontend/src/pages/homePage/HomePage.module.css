@@ -1,32 +1,3 @@
 .pageContainer {
   min-width: 94%;
 }
-
-.imageList {
-  width: 100%;
-}
-
-.imageListItem {
-  cursor: pointer;
-}
-
-.imageHorizontal {
-  width: 100%;
-  height: 100%;
-  object-fit: cover !important;
-  transition: transform 0.1s;
-  aspect-ratio: 4 / 3;
-}
-
-.imageVertical {
-  width: 100%;
-  height: 100%;
-  object-fit: cover !important;
-  transition: transform 0.1s;
-  aspect-ratio: 3 / 4;
-}
-
-.imageHorizontal:hover,
-.imageVertical:hover {
-  transform: scale(1.015);
-}

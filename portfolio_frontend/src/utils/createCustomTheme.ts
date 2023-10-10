@@ -5,9 +5,14 @@ export const createCustomTheme = () => {
     typography: {
       fontFamily: `"Lato"`,
       fontWeightRegular: "lighter",
-      fontWeightBold: "normal",
+      fontWeightBold: "bold",
       allVariants: {
         color: "black",
+      },
+    },
+    palette: {
+      primary: {
+        main: "#000000", // Set the primary color to black
       },
     },
   });

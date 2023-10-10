@@ -4,7 +4,7 @@
   min-width: 100%;
   min-height: 5rem;
   padding-right: 4rem !important;
-  padding-left: 4rem !important;
+  padding-left: 2rem !important;
   margin-bottom: 2rem;
   position: sticky;
   top: 0;
@@ -12,12 +12,25 @@
   background-color: whitesmoke;
 }
 
-.searchIcon {
-  width: 2.5rem;
+.menu {
+  width: 1.5rem;
+  padding-right: 2rem;
+}
+
+.menu:hover {
+  cursor: pointer;
 }
 
 .logo {
   width: 6rem !important;
+}
+
+.authedUser {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.7rem;
+  font-size: 0.8em;
 }
 
 .linkTextInactive,
@@ -34,7 +47,7 @@
 .linkTextActive::after {
   content: "";
   position: absolute;
-  left: 0;
+  left: 12px;
   bottom: -1px;
   height: 1px;
   background-color: currentColor;
@@ -46,12 +59,12 @@
 }
 
 .linkTextActive::after {
-  width: 100%;
+  width: 30%;
 }
 
 .linkTextInactive:hover::after,
 .linkTextActive:hover::after {
-  width: 100%;
+  width: 30%;
 }
 
 .linkTextInactive:hover {

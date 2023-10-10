@@ -1,8 +1,9 @@
 import { Dialog } from "@mui/material";
-import { Carousel } from "react-responsive-carousel";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Carousel from "react-material-ui-carousel";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 
 interface Image {
   uuid: string;
@@ -12,6 +13,7 @@ interface Image {
   client: string;
   file_name: string;
   caption: string;
+  is_landscape: boolean;
 }
 
 interface ImageDialogProps {
@@ -19,12 +21,17 @@ interface ImageDialogProps {
   onClose: () => void;
 }
 
-export const ImageDialog: React.FC<ImageDialogProps> = ({ image, onClose }) => {
+export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
   const [images, setImages] = useState<Image[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [curDimensions, setCurDimensions] = useState<{
+    width: number;
+    height: number;
+  } | null>(null);
 
   const fetchData = async () => {
+    setIsLoading(true);
     axios
       .get<Image[]>(
         `http://localhost:8000/api/filters/${image?.filter}/images/`
@@ -32,11 +39,11 @@ export const ImageDialog: React.FC<ImageDialogProps> = ({ image, onClose }) => {
       .then((response: { data: any }) => {
         setImages(response.data.results);
         // Find the initial image index
-        setCurrentImageIndex(
-          response.data.results.findIndex(
-            (img: Image) => img.uuid === image?.uuid
-          )
+        const curIndex = response.data.results.findIndex(
+          (img: Image) => img.uuid === image?.uuid
         );
+        setCurrentImageIndex(curIndex);
+        console.log(curIndex);
       })
       .catch((error: any) => {
         console.error("Error fetching images:", error);
@@ -47,33 +54,84 @@ export const ImageDialog: React.FC<ImageDialogProps> = ({ image, onClose }) => {
   };
 
   useEffect(() => {
-    if (isLoading) {
+    if (images.length === 0) {
       fetchData();
       console.log("fetching with filter: " + image?.filter);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading]);
+  }, []);
+
+  const handleImageChange = (now?: number) => {
+    if (now !== undefined) {
+      const currentImage = images[now];
+      const imageElement = document.createElement("img");
+      imageElement.src = currentImage.media_file;
+
+      imageElement.onload = () => {
+        const imageWidth = imageElement.width;
+        const imageHeight = imageElement.height;
+
+        const desiredHeight = (80 * window.innerHeight) / 100;
+        const scaleFactor = desiredHeight / imageHeight;
+        const desiredWidth = imageWidth * scaleFactor;
+
+        setCurDimensions({
+          width: desiredWidth,
+          height: desiredHeight,
+        });
+
+        console.log("Currently displayed image:", currentImage);
+        console.log("Image dimensions:", desiredWidth, "x", desiredHeight);
+      };
+    }
+  };
+
+  useEffect(() => {
+    if (images.length !== 0) {
+      handleImageChange(currentImageIndex);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [images]);
 
   return (
-    <Dialog open={image !== null} onClose={onClose} maxWidth="lg">
-      {images.length > 0 && (
+    <Dialog open={!isLoading} onClose={onClose} maxWidth={false}>
+      {curDimensions !== null ? (
         <Carousel
-          showThumbs={false}
-          selectedItem={currentImageIndex}
-          showStatus={false}
-          infiniteLoop={true}
+          index={currentImageIndex}
+          autoPlay={false}
+          animation="slide"
+          indicators={false}
+          navButtonsAlwaysVisible={true}
+          cycleNavigation={true}
+          sx={{
+            width: curDimensions.width,
+            height: curDimensions.height,
+            transition: "width 0.5s",
+            backgroundColor: "transparent",
+          }}
+          onChange={handleImageChange}
+          PrevIcon={<ArrowLeftIcon />}
+          NextIcon={<ArrowRightIcon />}
+          navButtonsProps={{
+            style: {
+              background: "none",
+              boxShadow: "none",
+            },
+          }}
         >
           {images.map((img, index) => (
-            <div key={index}>
-              <img
-                src={img.media_file}
-                alt={img.created_at}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </div>
+            <img
+              src={img.media_file}
+              alt={img.created_at}
+              key={index}
+              style={{
+                height: curDimensions.height + "px",
+                objectFit: "contain",
+              }}
+            />
           ))}
         </Carousel>
-      )}
+      ) : null}
     </Dialog>
   );
 };
