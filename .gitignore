@@ -27,3 +27,4 @@ __pycache__/
 .vscode/settings.json
 db.sqlite3
 /mediafiles
+/nginx/portfolio_frontend/node_modules
