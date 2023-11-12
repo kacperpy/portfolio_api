@@ -1,4 +1,4 @@
-FROM node:12.16.1-alpine AS builder
+FROM node:alpine AS builder
 
 
 WORKDIR /portfolio_frontend
