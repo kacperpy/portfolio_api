@@ -8,6 +8,7 @@ import { TopBar } from "./components/topBar/TopBar";
 import { PortfolioPage } from "./pages/portfolioPage/PortfolioPage";
 import { LoginPage } from "./pages/loginPage/LoginPage";
 import { ClientPage } from "./pages/clientPage/ClientPage";
+import { AboutPage } from "./pages/aboutPage/AboutPage";
 // import { SideBar } from "./components/sideBar/SideBar";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/portfolio" element={<PortfolioPage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/client" element={<ClientPage />}></Route>
+          <Route path="/about" element={<AboutPage />}></Route>
         </Routes>
       </div>
     </ThemeProvider>
