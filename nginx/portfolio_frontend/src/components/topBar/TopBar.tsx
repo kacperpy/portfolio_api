@@ -1,16 +1,13 @@
 import { Container, Grid, Typography } from "@mui/material";
 import styles from "./TopBar.module.css";
 import logo from "./data/logo_medium.png";
-import menu_icon from "./data/menu_icon.svg";
-import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
-import SideBar from "../sideBar/SideBar";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { data } from "./data/topBarContent";
 import { useAuth } from "../../utils/useAuth";
 
 export const TopBar = () => {
   const curLocation = useLocation();
-  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const { user, updateUser } = useAuth();
 
   window.addEventListener("storage", () => {
@@ -20,13 +17,11 @@ export const TopBar = () => {
   return (
     <Container className={styles.topBarMenuContainer}>
       <img
-        src={menu_icon}
-        alt="menu"
-        onClick={() => setOpen(true)}
-        className={styles.menu}
+        src={logo}
+        alt="logo"
+        onClick={() => navigate("/")}
+        className={styles.logo}
       ></img>
-      <SideBar open={open} onClose={() => setOpen(false)} />
-      <img src={logo} alt="logo" className={styles.logo}></img>
       <Grid
         container
         direction="row"

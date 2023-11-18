@@ -34,7 +34,7 @@ export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
     setIsLoading(true);
     axios
       .get<Image[]>(
-        `http://46.41.137.226/api/filters/${image?.filter}/images/`
+        `http://localhost:8000/api/filters/${image?.filter}/images/`
       )
       .then((response: { data: any }) => {
         setImages(response.data.results);

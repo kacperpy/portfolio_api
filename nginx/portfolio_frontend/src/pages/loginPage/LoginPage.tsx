@@ -72,7 +72,7 @@ export const LoginPage: React.FC = () => {
         ) : (
           <Button
             sx={{
-              width: "50%",
+              width: "100%",
               backgroundColor: "black",
               "&:hover": {
                 backgroundColor: "dimgrey",

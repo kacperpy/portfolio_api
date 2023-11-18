@@ -1,0 +1,20 @@
+.sideBarContainer {
+  padding-top: 4rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  width: 24rem;
+  background-color: whitesmoke;
+  height: 100%;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.icon {
+  width: 14px;
+  padding-right: 2px;
+}
+
+.socialMediaText {
+  font-size: 10px !important;
+}
