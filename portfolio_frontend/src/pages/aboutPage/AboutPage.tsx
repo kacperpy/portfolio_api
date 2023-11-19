@@ -7,33 +7,18 @@ export const AboutPage = () => {
   return (
     <Box
       sx={{
-        justifyContent: "center",
+        justifyContent: "space-evenly",
         alignItems: "center",
         display: "flex",
+        marginTop: "4rem",
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 4,
-          maxWidth: "20%",
-        }}
-      >
-        <Typography variant="h4" style={{ fontWeight: "bold" }}>
-          Valeriano Di Domenico
-        </Typography>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <img
-            src={valeriano_profile_pic}
-            alt="valeriano de demenico"
-            style={{ width: "24rem" }}
-          />
-        </div>
-        <Typography variant="subtitle1" textAlign="start">
-          "Hundert Gedanken schwirren mir durch den Kopf, wenn ich vor einer
-          fotografischen Aufgabe stehe"
-        </Typography>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <img
+          src={valeriano_profile_pic}
+          alt="valeriano de demenico"
+          style={{ width: "24rem" }}
+        />
         <Box display="flex" flexDirection="column" gap={1}>
           <Typography
             variant="h6"
@@ -63,6 +48,73 @@ export const AboutPage = () => {
               </Typography>
             </Button>
           ))}
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          maxWidth: "40%",
+          gap: 4,
+        }}
+      >
+        <Typography variant="h4" style={{ fontWeight: "bold" }}>
+          Valeriano Di Domenico
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 2,
+          }}
+        >
+          <Typography variant="body1">
+            Seine Geschichte beginnt auf dem Fussballplatz. Natürlich ist es die
+            Liebe zum Spiel. Noch mehr aber fasziniert Valeriano Di Domenico das
+            Geschehen hinter der Linie. Wie Fotografen die Emotionen des Spiels
+            einfangen. Prägende Sekunden für die Ewigkeit festhalten.
+          </Typography>
+          <Typography variant="body1">
+            Die Liebe zum Sport bleibt. Als Fotograf entwickelt sich Valeriano
+            aber immer weiter. Heute sagt er: «Vor einer fotografischen Aufgabe
+            frage ich mich: Was ist die Geschichte hinter dem Sujet? Wie könnte
+            sie sich entwickeln?» So tastet er sich heran: zum Kern, der sich
+            hinter einem Sujet verbirgt. Denn fotografieren ist für den Züricher
+            mit italienischen Wurzeln ein Prozess - genährt von Können,
+            Kreativität und Fantasie. Eigenschaften, die ihn nach 18
+            Berufsjahren auszeichnen.
+          </Typography>
+          <Typography variant="body1">
+            Das Handwerk lernt er bei der Gruppe Autodidaktische Fotografen
+            (GAF). Durch sie fand er den beruflichen Einstieg. Ab 2003 ist er
+            fester Mitarbeiter bei «EQ Images». Valeriano beginnt als
+            Sportfotograf, ist an Fussball-Grossanlässen wie WM und EM oder an
+            Olympischen Spielen im Einsatz. Hier lernt er sich durchzusetzen.
+            Und ein Auge für «das andere Bild» zu entwickeln, wie er sagt. Er
+            weitet sein Spektrum immer mehr aus. 2011 gründet er die Bildagentur
+            «Fresh Focus» mit. Themen wie Politik, Wirtschaft, Kultur und
+            Gesellschaft kommen hinzu. 2014 dann der Schritt in die
+            Selbstständigkeit. Valeriano Di Domenico beschäftigt sich vermehrt
+            mit Porträtfotografie, Lichtführung, arbeitet immer mehr im Studio
+            oder ist für Outdoor-Shootings draussen im Feld. Hier ist
+            Zusammenarbeit gefragt. Natürlich ist Valeriano ein Teamplayer. Den
+            Einzelkämpfer von einst im Stadion hat er längst hinter sich
+            gelassen. Und genau das schätzt Valeriano an seiner Arbeit, die ihn
+            täglich bereichert. «Die Vielseitigkeit. Ich arbeite ebenso gerne
+            mit dem ganz langen Objektiv wie mit einer Minikamera. Und ich bin
+            ebenso gerne im Studio wie an einem Live-Event.»
+          </Typography>
+          <Typography variant="body1">
+            Fotografieren ist für ihn nicht nur ein Beruf, sondern Erfüllung.
+            Und genau das macht ein gutes Bild für ihn aus: «Es muss etwas
+            darstellen, etwas zeigen, etwas festhalten - und den Betrachter
+            berühren. Es ist eigentlich ganz einfach. Oder eben: ganz
+            schwierig.»
+          </Typography>
         </Box>
       </Box>
     </Box>
