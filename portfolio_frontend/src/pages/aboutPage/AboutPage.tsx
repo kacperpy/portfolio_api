@@ -8,12 +8,15 @@ export const AboutPage = () => {
     <Box
       sx={{
         justifyContent: "space-evenly",
-        alignItems: "center",
+        alignItems: "start",
         display: "flex",
         marginTop: "4rem",
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <Typography variant="h4" style={{ fontWeight: "bold" }}>
+          Valeriano Di Domenico
+        </Typography>
         <img
           src={valeriano_profile_pic}
           alt="valeriano de demenico"
@@ -60,9 +63,6 @@ export const AboutPage = () => {
           gap: 4,
         }}
       >
-        <Typography variant="h4" style={{ fontWeight: "bold" }}>
-          Valeriano Di Domenico
-        </Typography>
         <Box
           sx={{
             display: "flex",
