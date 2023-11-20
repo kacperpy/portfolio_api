@@ -7,78 +7,67 @@ export const AboutPage = () => {
   return (
     <Box
       sx={{
-        justifyContent: "space-evenly",
+        justifyContent: "center",
         alignItems: "center",
         display: "flex",
+        flexDirection: "column",
         marginTop: "4rem",
+        marginBottom: "4rem",
+        gap: 6,
       }}
     >
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        <img
-          src={valeriano_profile_pic}
-          alt="valeriano de demenico"
-          style={{ width: "24rem" }}
-        />
-        <Box display="flex" flexDirection="column" gap={1}>
-          <Typography
-            variant="h6"
-            textAlign="start"
-            style={{ fontWeight: "bold" }}
-          >
-            Contact
-          </Typography>
-          <Divider style={{ width: "2rem" }} />
-          <Typography variant="subtitle2" textAlign="start">
-            Phone: +41 78 604 02 05
-          </Typography>
-          <Typography variant="subtitle2" textAlign="start">
-            Email: mail@valerianodidomenico.ch
-          </Typography>
-        </Box>
-        <Box display="flex" justifyContent="center" gap={2}>
-          {data.map((item, index) => (
-            <Button
-              key={index}
-              className={styles.socialMediaButton}
-              onClick={() => window.open(item.url, "_blank")}
-            >
-              <img src={item.icon} alt={item.alt} className={styles.icon} />
-              <Typography className={styles.socialMediaText}>
-                {item.name}
-              </Typography>
-            </Button>
-          ))}
-        </Box>
-      </Box>
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
+          flexDirection: "row",
           alignItems: "center",
-          maxWidth: "40%",
-          gap: 4,
+          gap: 10,
+          maxWidth: "80%",
         }}
       >
-        <Typography variant="h4" style={{ fontWeight: "bold" }}>
-          Valeriano Di Domenico
-        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "start",
+            maxWidth: "30rem",
+            gap: 2,
+          }}
+        >
+          <Typography variant="h4" style={{ fontWeight: "bold" }}>
+            Valeriano Di Domenico
+          </Typography>
+          <img
+            src={valeriano_profile_pic}
+            alt="valeriano de demenico"
+            style={{ width: "30rem", aspectRatio: "4 / 5", objectFit: "cover" }}
+          />
+          <Typography
+            variant="body1"
+            textAlign={"start"}
+            sx={{ fontWeight: "bold" }}
+          >
+            "Hundert gedanken schwirren mir durch den kopf, wenn ich vor einer
+            fotografischen aufgabe stehe"
+          </Typography>
+        </Box>
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            maxWidth: "40rem",
             gap: 2,
           }}
         >
-          <Typography variant="body1">
+          <Typography variant="body1" sx={{ textAlign: "justify" }}>
             Seine Geschichte beginnt auf dem Fussballplatz. Natürlich ist es die
             Liebe zum Spiel. Noch mehr aber fasziniert Valeriano Di Domenico das
             Geschehen hinter der Linie. Wie Fotografen die Emotionen des Spiels
             einfangen. Prägende Sekunden für die Ewigkeit festhalten.
           </Typography>
-          <Typography variant="body1">
+          <Typography variant="body1" sx={{ textAlign: "justify" }}>
             Die Liebe zum Sport bleibt. Als Fotograf entwickelt sich Valeriano
             aber immer weiter. Heute sagt er: «Vor einer fotografischen Aufgabe
             frage ich mich: Was ist die Geschichte hinter dem Sujet? Wie könnte
@@ -88,7 +77,7 @@ export const AboutPage = () => {
             Kreativität und Fantasie. Eigenschaften, die ihn nach 18
             Berufsjahren auszeichnen.
           </Typography>
-          <Typography variant="body1">
+          <Typography variant="body1" sx={{ textAlign: "justify" }}>
             Das Handwerk lernt er bei der Gruppe Autodidaktische Fotografen
             (GAF). Durch sie fand er den beruflichen Einstieg. Ab 2003 ist er
             fester Mitarbeiter bei «EQ Images». Valeriano beginnt als
@@ -108,13 +97,44 @@ export const AboutPage = () => {
             mit dem ganz langen Objektiv wie mit einer Minikamera. Und ich bin
             ebenso gerne im Studio wie an einem Live-Event.»
           </Typography>
-          <Typography variant="body1">
+          <Typography variant="body1" sx={{ textAlign: "justify" }}>
             Fotografieren ist für ihn nicht nur ein Beruf, sondern Erfüllung.
             Und genau das macht ein gutes Bild für ihn aus: «Es muss etwas
             darstellen, etwas zeigen, etwas festhalten - und den Betrachter
             berühren. Es ist eigentlich ganz einfach. Oder eben: ganz
             schwierig.»
           </Typography>
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+        }}
+      >
+        <Box display="flex" flexDirection="column" gap={1}>
+          <Typography variant="subtitle2" textAlign="start">
+            Phone: +41 78 604 02 05
+          </Typography>
+          <Typography variant="subtitle2" textAlign="start">
+            Email: mail@valerianodidomenico.ch
+          </Typography>
+        </Box>
+        <Divider style={{ width: "100%" }} />
+        <Box display="flex" justifyContent="center" gap={2}>
+          {data.map((item, index) => (
+            <Button
+              key={index}
+              className={styles.socialMediaButton}
+              onClick={() => window.open(item.url, "_blank")}
+            >
+              <img src={item.icon} alt={item.alt} className={styles.icon} />
+              <Typography className={styles.socialMediaText}>
+                {item.name}
+              </Typography>
+            </Button>
+          ))}
         </Box>
       </Box>
     </Box>
