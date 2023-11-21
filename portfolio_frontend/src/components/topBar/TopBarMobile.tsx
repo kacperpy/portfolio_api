@@ -3,7 +3,7 @@ import styles from "./TopBar.module.css";
 import logo from "./data/logo_medium.png";
 import menuIcon from "./data/menu_icon.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Button, Drawer, Grid, Typography } from "@mui/material";
+import { Drawer, Typography } from "@mui/material";
 import { data } from "./data/topBarContent";
 import { useAuth } from "../../utils/useAuth";
 import { useState } from "react";
@@ -13,6 +13,10 @@ export const TopBarMobile = () => {
   const curLocation = useLocation();
   const { user, updateUser } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  window.addEventListener("storage", () => {
+    updateUser();
+  });
 
   return (
     <Box
@@ -100,53 +104,3 @@ export const TopBarMobile = () => {
     </Box>
   );
 };
-
-// {/* <Grid
-//   container
-//   direction="row"
-//   justifyContent="flex-end"
-//   alignItems="center"
-// >
-// {data.map((item, index) => (
-//   <Typography>
-//     <Link
-//       key={index}
-//       to={item.url}
-//       className={
-//         curLocation.pathname === item.url
-//           ? styles.linkTextActive
-//           : styles.linkTextInactive
-//       }
-//     >
-//       {item.name}
-//     </Link>
-//   </Typography>
-//   ))}
-// <Typography>
-//   {user ? (
-//     <Link
-//       key={data.length + 1}
-//       to="/client"
-//       className={
-//         curLocation.pathname === "/client"
-//           ? styles.linkTextActive
-//           : styles.linkTextInactive
-//       }
-//     >
-//       {user}
-//     </Link>
-//   ) : (
-//     <Link
-//       key={data.length + 1}
-//       to="/login"
-//       className={
-//         curLocation.pathname === "/login"
-//           ? styles.linkTextActive
-//           : styles.linkTextInactive
-//       }
-//     >
-//       Login
-//     </Link>
-//   )}
-// </Typography>
-// </Grid> */}
