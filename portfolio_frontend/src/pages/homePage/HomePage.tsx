@@ -25,7 +25,7 @@ export const HomePage = () => {
   const fetchData = async () => {
     axios
       .get<Image[]>(
-        `http://46.41.137.226/api/homepage-images/?page=${curPage}&size=7`
+        `http://46.41.137.226/api/homepage-images/?page=${curPage}&size=9`
       )
       .then((response: { data: any }) => {
         setImages((prevImages) => [...prevImages, ...response.data.results]);
