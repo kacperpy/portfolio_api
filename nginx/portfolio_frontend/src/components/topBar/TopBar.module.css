@@ -11,8 +11,8 @@
 }
 
 .menu {
-  width: 1.5rem;
-  padding-right: 2rem;
+  width: 3rem;
+  z-index: 10;
 }
 
 .menu:hover {
@@ -22,6 +22,7 @@
 .logo {
   width: 6rem !important;
   cursor: pointer;
+  z-index: 10;
 }
 
 .authedUser {
