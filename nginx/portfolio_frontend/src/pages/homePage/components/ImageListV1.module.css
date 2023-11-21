@@ -20,6 +20,15 @@
   aspect-ratio: 3 / 4;
 }
 
+@media (max-width: 1400px) {
+  .imageVertical {
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important;
+    aspect-ratio: 3 / 4;
+  }
+}
+
 .imageContainer {
   width: 100%;
   height: 100%;

@@ -33,9 +33,7 @@ export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
   const fetchData = async () => {
     setIsLoading(true);
     axios
-      .get<Image[]>(
-        `http://46.41.137.226/api/filters/${image?.filter}/images/`
-      )
+      .get<Image[]>(`http://46.41.137.226/api/filters/${image?.filter}/images/`)
       .then((response: { data: any }) => {
         setImages(response.data.results);
         // Find the initial image index
@@ -71,9 +69,17 @@ export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
         const imageWidth = imageElement.width;
         const imageHeight = imageElement.height;
 
-        const desiredHeight = (80 * window.innerHeight) / 100;
-        const scaleFactor = desiredHeight / imageHeight;
-        const desiredWidth = imageWidth * scaleFactor;
+        let desiredHeight, desiredWidth, scaleFactor;
+
+        if (window.innerWidth < 1400) {
+          desiredWidth = (80 * window.innerWidth) / 100;
+          scaleFactor = desiredWidth / imageWidth;
+          desiredHeight = imageHeight * scaleFactor;
+        } else {
+          desiredHeight = (80 * window.innerHeight) / 100;
+          scaleFactor = desiredHeight / imageHeight;
+          desiredWidth = imageWidth * scaleFactor;
+        }
 
         setCurDimensions({
           width: desiredWidth,
@@ -82,6 +88,7 @@ export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
 
         console.log("Currently displayed image:", currentImage);
         console.log("Image dimensions:", desiredWidth, "x", desiredHeight);
+        console.log("window width: " + window.innerWidth);
       };
     }
   };
