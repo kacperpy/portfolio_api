@@ -29,9 +29,8 @@ export const TopBar = () => {
         alignItems="center"
       >
         {data.map((item, index) => (
-          <Typography>
+          <Typography key={index}>
             <Link
-              key={index}
               to={item.url}
               className={
                 curLocation.pathname === item.url
