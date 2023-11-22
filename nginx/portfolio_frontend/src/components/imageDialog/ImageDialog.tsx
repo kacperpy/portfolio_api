@@ -71,7 +71,10 @@ export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
 
         let desiredHeight, desiredWidth, scaleFactor;
 
-        if (window.innerWidth < 1400) {
+        if (
+          window.innerWidth < 1400 &&
+          window.innerWidth < window.innerHeight
+        ) {
           desiredWidth = (80 * window.innerWidth) / 100;
           scaleFactor = desiredWidth / imageWidth;
           desiredHeight = imageHeight * scaleFactor;
