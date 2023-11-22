@@ -25,11 +25,15 @@ export const HomePage = () => {
   const fetchData = async () => {
     axios
       .get<Image[]>(
-        `http://46.41.137.226/api/homepage-images/?page=${curPage}&size=9`
+        `http://46.41.137.226/api/homepage-images/?page=${curPage}&size=${
+          curPage > 1 ? 3 : 9
+        }`
       )
       .then((response: { data: any }) => {
         setImages((prevImages) => [...prevImages, ...response.data.results]);
-        setCurPage((prevPage) => prevPage + 1);
+        curPage === 1
+          ? setCurPage((prevPage) => prevPage + 3)
+          : setCurPage((prevPage) => prevPage + 1);
         console.log("FETCHING");
       })
       .catch((error: any) => {
@@ -60,16 +64,28 @@ export const HomePage = () => {
     setIsLoading(true);
   };
 
+  const handleScroll = () => {
+    const scrollTop = window.scrollY;
+    const clientHeight = document.documentElement.clientHeight;
+    const scrollHeight = document.documentElement.scrollHeight;
+
+    if (scrollTop + clientHeight >= scrollHeight) {
+      handleLoadMore();
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll, true);
+
   return (
     <Container className={styles.pageContainer}>
       <Box width="100%" height="100%">
         <ImageListV1 images={images} handleImageClick={handleImageClick} />
-        <Button
+        {/* <Button
           onClick={handleLoadMore}
           style={{ marginTop: 50, marginBottom: 50 }}
         >
           Load more
-        </Button>
+        </Button> */}
       </Box>
       {selectedImage !== null ? (
         <ImageDialog image={selectedImage} onClose={handleClose} />

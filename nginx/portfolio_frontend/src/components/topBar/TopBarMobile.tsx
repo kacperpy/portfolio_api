@@ -54,11 +54,10 @@ export const TopBarMobile = () => {
           }}
         >
           {data.map((item, index) => (
-            <Typography>
+            <Typography key={index}>
               {" "}
               <Link
                 onClick={() => setMenuOpen(false)}
-                key={index}
                 to={item.url}
                 className={
                   curLocation.pathname === item.url
