@@ -10,6 +10,8 @@ import { LoginPage } from "./pages/loginPage/LoginPage";
 import { ClientPage } from "./pages/clientPage/ClientPage";
 import { AboutPage } from "./pages/aboutPage/AboutPage";
 import { TopBarMobile } from "./components/topBar/TopBarMobile";
+import { Box } from "@mui/system";
+import { Typography } from "@mui/material";
 // import { SideBar } from "./components/sideBar/SideBar";
 
 function App() {
@@ -45,6 +47,15 @@ function App() {
           <Route path="/about" element={<AboutPage />}></Route>
         </Routes>
       </div>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          paddingTop: 4,
+        }}
+      >
+        <Typography>Valeriano Di Domenico©</Typography>
+      </Box>
     </ThemeProvider>
   );
 }

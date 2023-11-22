@@ -4,6 +4,9 @@ import { data } from "./data/sideBarContent";
 import styles from "./AboutPage.module.css";
 
 export const AboutPage = () => {
+  const isMobile =
+    window.innerWidth < 1400 && window.innerWidth < window.innerHeight;
+
   return (
     <Box
       sx={{
@@ -19,9 +22,9 @@ export const AboutPage = () => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: isMobile ? "column" : "row",
           alignItems: "center",
-          gap: 10,
+          gap: isMobile ? 4 : 10,
           maxWidth: "80%",
         }}
       >
@@ -34,16 +37,20 @@ export const AboutPage = () => {
             gap: 2,
           }}
         >
-          <Typography variant="h4" style={{ fontWeight: "bold" }}>
+          <Typography variant={isMobile ? "h5" : "h4"}>
             Valeriano Di Domenico
           </Typography>
           <img
             src={valeriano_profile_pic}
             alt="valeriano de demenico"
-            style={{ width: "30rem", aspectRatio: "4 / 5", objectFit: "cover" }}
+            style={{
+              width: isMobile ? (window.innerWidth * 80) / 100 + "px" : "30rem",
+              aspectRatio: "4 / 5",
+              objectFit: "cover",
+            }}
           />
           <Typography
-            variant="body1"
+            variant={isMobile ? "body2" : "body1"}
             textAlign={"start"}
             sx={{ fontWeight: "bold" }}
           >
@@ -61,13 +68,19 @@ export const AboutPage = () => {
             gap: 2,
           }}
         >
-          <Typography variant="body1" sx={{ textAlign: "justify" }}>
+          <Typography
+            variant={isMobile ? "body2" : "body1"}
+            sx={{ textAlign: "justify" }}
+          >
             Seine Geschichte beginnt auf dem Fussballplatz. Natürlich ist es die
             Liebe zum Spiel. Noch mehr aber fasziniert Valeriano Di Domenico das
             Geschehen hinter der Linie. Wie Fotografen die Emotionen des Spiels
             einfangen. Prägende Sekunden für die Ewigkeit festhalten.
           </Typography>
-          <Typography variant="body1" sx={{ textAlign: "justify" }}>
+          <Typography
+            variant={isMobile ? "body2" : "body1"}
+            sx={{ textAlign: "justify" }}
+          >
             Die Liebe zum Sport bleibt. Als Fotograf entwickelt sich Valeriano
             aber immer weiter. Heute sagt er: «Vor einer fotografischen Aufgabe
             frage ich mich: Was ist die Geschichte hinter dem Sujet? Wie könnte
@@ -77,7 +90,10 @@ export const AboutPage = () => {
             Kreativität und Fantasie. Eigenschaften, die ihn nach 18
             Berufsjahren auszeichnen.
           </Typography>
-          <Typography variant="body1" sx={{ textAlign: "justify" }}>
+          <Typography
+            variant={isMobile ? "body2" : "body1"}
+            sx={{ textAlign: "justify" }}
+          >
             Das Handwerk lernt er bei der Gruppe Autodidaktische Fotografen
             (GAF). Durch sie fand er den beruflichen Einstieg. Ab 2003 ist er
             fester Mitarbeiter bei «EQ Images». Valeriano beginnt als
@@ -97,7 +113,10 @@ export const AboutPage = () => {
             mit dem ganz langen Objektiv wie mit einer Minikamera. Und ich bin
             ebenso gerne im Studio wie an einem Live-Event.»
           </Typography>
-          <Typography variant="body1" sx={{ textAlign: "justify" }}>
+          <Typography
+            variant={isMobile ? "body2" : "body1"}
+            sx={{ textAlign: "justify" }}
+          >
             Fotografieren ist für ihn nicht nur ein Beruf, sondern Erfüllung.
             Und genau das macht ein gutes Bild für ihn aus: «Es muss etwas
             darstellen, etwas zeigen, etwas festhalten - und den Betrachter
@@ -110,19 +129,12 @@ export const AboutPage = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
+          alignItems: "center",
           gap: 2,
         }}
       >
-        <Box display="flex" flexDirection="column" gap={1}>
-          <Typography variant="subtitle2" textAlign="start">
-            Phone: +41 78 604 02 05
-          </Typography>
-          <Typography variant="subtitle2" textAlign="start">
-            Email: mail@valerianodidomenico.ch
-          </Typography>
-        </Box>
         <Divider style={{ width: "100%" }} />
-        <Box display="flex" justifyContent="center" gap={2}>
+        <Box display="flex" justifyContent="center" gap={isMobile ? 1 : 3}>
           {data.map((item, index) => (
             <Button
               key={index}
