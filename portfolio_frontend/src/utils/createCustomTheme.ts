@@ -15,5 +15,14 @@ export const createCustomTheme = () => {
         main: "#000000", // Set the primary color to black
       },
     },
+    components: {
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            backgroundColor: "transparent",
+          },
+        },
+      },
+    },
   });
 };
