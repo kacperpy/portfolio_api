@@ -14,6 +14,6 @@ RUN npm run build --prod
 
 FROM nginx:1.21-alpine
 
-COPY --from=builder /portfolio_frontend/build /usr/share/nginx/html
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d
+COPY --from=builder /portfolio_frontend/build /usr/share/nginx/html
