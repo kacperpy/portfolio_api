@@ -7,3 +7,5 @@ Deployed on a cloud VPS server using the following technologies:
 - Postgres DB
 - Nginx
 - Gunicorn
+
+## Website can be currently viewed at: http://46.41.137.226/
