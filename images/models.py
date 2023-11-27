@@ -65,3 +65,34 @@ class Image(models.Model):
 
     def __str__(self):
         return f"{self.media_file.name};{get_formatted_date(self.created_at)}"
+
+class VideoClip(models.Model):
+    uuid = models.UUIDField(
+        db_index=True,
+        default=uuid.uuid4,
+        editable=False
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    media_file = models.FileField()
+    filter = models.ForeignKey(
+        Filter,
+        related_name='videos',
+        on_delete=models.CASCADE
+    )
+    client = models.ForeignKey(
+        Client,
+        related_name='videos',
+        on_delete=models.CASCADE
+    )
+    caption = models.CharField(
+        max_length=256
+    )
+    is_private = models.BooleanField(
+        default=False
+    )
+    is_homepage = models.BooleanField(
+        default=False
+    )
+
+    def __str__(self):
+        return f"{self.media_file.name};{get_formatted_date(self.created_at)}"

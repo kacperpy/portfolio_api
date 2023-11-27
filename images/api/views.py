@@ -1,8 +1,8 @@
 from rest_framework import generics, mixins, viewsets
 from images.api.paginators import CustomResultSetPaginator
 
-from images.api.serializers import ImageReadSerializer
-from images.models import Filter, Image
+from images.api.serializers import ImageReadSerializer, VideoClipReadSerializer
+from images.models import Filter, Image, VideoClip
 
 
 class ImageViewSet(mixins.RetrieveModelMixin,
@@ -34,3 +34,13 @@ class ListHomePageImages(generics.ListAPIView):
 
     def get_queryset(self):
         return Image.objects.filter(is_homepage=True)
+
+
+class VideoClipViewSet(mixins.RetrieveModelMixin,
+                       mixins.ListModelMixin,
+                       viewsets.GenericViewSet):
+    queryset = VideoClip.objects.all()
+    serializer_class = VideoClipReadSerializer
+    pagination_class = CustomResultSetPaginator
+    permission_classes = []
+    lookup_field = 'uuid'
