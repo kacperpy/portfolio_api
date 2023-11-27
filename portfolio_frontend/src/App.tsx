@@ -12,6 +12,7 @@ import { AboutPage } from "./pages/aboutPage/AboutPage";
 import { TopBarMobile } from "./components/topBar/TopBarMobile";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
+import { PortfolioPageMobile } from "./pages/portfolioPage/PortfolioPageMobile";
 // import { SideBar } from "./components/sideBar/SideBar";
 
 function App() {
@@ -41,7 +42,10 @@ function App() {
         {isMobile ? <TopBarMobile /> : <TopBar />}
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
-          <Route path="/portfolio" element={<PortfolioPage />}></Route>
+          <Route
+            path="/portfolio"
+            element={isMobile ? <PortfolioPageMobile /> : <PortfolioPage />}
+          ></Route>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/client" element={<ClientPage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
