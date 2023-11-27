@@ -49,14 +49,6 @@ export const AboutPage = () => {
               objectFit: "cover",
             }}
           />
-          <Typography
-            variant={isMobile ? "body2" : "body1"}
-            textAlign={"start"}
-            sx={{ fontWeight: "bold" }}
-          >
-            "Hundert gedanken schwirren mir durch den kopf, wenn ich vor einer
-            fotografischen aufgabe stehe"
-          </Typography>
         </Box>
         <Box
           sx={{
@@ -87,7 +79,7 @@ export const AboutPage = () => {
             sie sich entwickeln?» So tastet er sich heran: zum Kern, der sich
             hinter einem Sujet verbirgt. Denn fotografieren ist für den Züricher
             mit italienischen Wurzeln ein Prozess - genährt von Können,
-            Kreativität und Fantasie. Eigenschaften, die ihn nach 18
+            Kreativität und Fantasie. Eigenschaften, die ihn nach 21
             Berufsjahren auszeichnen.
           </Typography>
           <Typography
