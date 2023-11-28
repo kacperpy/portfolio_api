@@ -13,38 +13,24 @@ import { TopBarMobile } from "./components/topBar/TopBarMobile";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import { PortfolioPageMobile } from "./pages/portfolioPage/PortfolioPageMobile";
+import { useIsMobileDevice } from "./utils/useIsMobileDevice";
 // import { SideBar } from "./components/sideBar/SideBar";
 
 function App() {
   const theme = createCustomTheme();
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1400);
-    };
-
-    // Initial check on mount
-    handleResize();
-
-    // Add event listener for window resize
-    window.addEventListener("resize", handleResize);
-
-    // Remove event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []); // Empty dependency array means this effect will run once on mount
+  const { isMobileDevice } = useIsMobileDevice();
 
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        {isMobile ? <TopBarMobile /> : <TopBar />}
+        {isMobileDevice ? <TopBarMobile /> : <TopBar />}
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route
             path="/portfolio"
-            element={isMobile ? <PortfolioPageMobile /> : <PortfolioPage />}
+            element={
+              isMobileDevice ? <PortfolioPageMobile /> : <PortfolioPage />
+            }
           ></Route>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/client" element={<ClientPage />}></Route>

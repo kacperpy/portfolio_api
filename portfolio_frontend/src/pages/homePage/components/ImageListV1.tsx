@@ -1,5 +1,6 @@
 import { Divider, Grid, Typography } from "@mui/material";
 import styles from "./ImageListV1.module.css";
+import { useIsMobileDevice } from "../../../utils/useIsMobileDevice";
 
 interface Image {
   uuid: string;
@@ -18,6 +19,7 @@ interface ImageListV1Props {
 }
 
 export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
+  const { isMobileDevice } = useIsMobileDevice();
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const tiltContainer = event.currentTarget;
     const tiltBox = tiltContainer.getBoundingClientRect();
@@ -60,7 +62,7 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
   };
 
   return (
-    <Grid container spacing={10}>
+    <Grid container spacing={isMobileDevice ? 2 : 10}>
       {images.map((image) => (
         <Grid
           item
