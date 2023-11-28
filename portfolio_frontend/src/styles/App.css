@@ -2,6 +2,7 @@
   background-color: whitesmoke;
   text-align: center;
   place-items: center;
+  height: 100%;
 }
 
 ::-webkit-scrollbar {
