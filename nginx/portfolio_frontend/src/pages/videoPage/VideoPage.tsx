@@ -3,7 +3,7 @@ import { useState } from "react";
 import ReactPlayer from "react-player";
 import { mockVideos } from "./mockData";
 
-export const PortfolioPage = () => {
+export const VideoPage = () => {
   const [hoveredItem, setHoveredItem] = useState<number | undefined>(undefined);
 
   return (

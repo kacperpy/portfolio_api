@@ -8,8 +8,12 @@ export const data = [
     name: "Portfolio",
   },
   {
-    url: "/contacts",
-    name: "Contacts",
+    url: "/video",
+    name: "Video",
+  },
+  {
+    url: "/contact",
+    name: "Contact",
   },
   {
     url: "/about",
