@@ -15,6 +15,27 @@
   z-index: 10;
 }
 
+.close {
+  width: 3rem;
+  z-index: 10;
+  position: absolute;
+  margin-bottom: 160%;
+
+  animation-name: rotate360;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
+}
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .menu:hover {
   cursor: pointer;
 }

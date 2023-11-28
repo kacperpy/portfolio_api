@@ -2,6 +2,7 @@ import { Box } from "@mui/system";
 import styles from "./TopBar.module.css";
 import logo from "./data/logo_medium.png";
 import menuIcon from "./data/menu_icon.svg";
+import closeIcon from "./data/close_icon.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Drawer, Typography } from "@mui/material";
 import { data } from "./data/topBarContent";
@@ -53,6 +54,12 @@ export const TopBarMobile = () => {
             backgroundColor: "whitesmoke",
           }}
         >
+          <img
+            src={closeIcon}
+            alt="close"
+            onClick={() => setMenuOpen(false)}
+            className={styles.close}
+          ></img>
           {data.map((item, index) => (
             <Typography key={index}>
               {" "}
