@@ -69,7 +69,7 @@ export const HomePage = () => {
     const clientHeight = document.documentElement.clientHeight;
     const scrollHeight = document.documentElement.scrollHeight;
 
-    if (scrollTop + clientHeight >= scrollHeight) {
+    if (scrollTop + clientHeight >= scrollHeight * 0.9) {
       handleLoadMore();
     }
   };
