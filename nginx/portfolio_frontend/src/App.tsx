@@ -24,7 +24,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        {isMobileDevice ? <TopBarMobile /> : <TopBar />}
+        <TopBarMobile />
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route
