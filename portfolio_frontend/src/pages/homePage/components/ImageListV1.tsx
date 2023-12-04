@@ -1,4 +1,10 @@
-import { Divider, Grid, Typography } from "@mui/material";
+import {
+  Divider,
+  Grid,
+  ImageList,
+  ImageListItem,
+  Typography,
+} from "@mui/material";
 import styles from "./ImageListV1.module.css";
 import { useIsMobileDevice } from "../../../utils/useIsMobileDevice";
 
@@ -62,17 +68,18 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
   };
 
   return (
-    <Grid container spacing={isMobileDevice ? 2 : 10}>
+    <ImageList
+      sx={{
+        paddingTop: "1rem",
+        paddingBottom: "4rem",
+        overflow: "hidden",
+      }}
+      variant={isMobileDevice ? "standard" : "woven"}
+      cols={isMobileDevice ? 1 : 3}
+      gap={isMobileDevice ? 10 : 100}
+    >
       {images.map((image) => (
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          md={4}
-          xl={4}
-          key={image.uuid}
-          className={styles.imageListItem}
-        >
+        <ImageListItem key={image.uuid}>
           <div
             onMouseMove={(event) => handleMouseMove(event)}
             onMouseLeave={handleMouseLeave}
@@ -93,6 +100,7 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
           <div
             style={{
               textAlign: "left",
+              marginBottom: "2rem",
               marginLeft:
                 image.is_landscape || window.innerWidth < 1400 ? 0 : "15%",
             }}
@@ -107,8 +115,32 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
               {image.client}
             </Typography>
           </div>
-        </Grid>
+        </ImageListItem>
       ))}
-    </Grid>
+    </ImageList>
   );
 };
+
+{
+  /* <ImageList sx={{ width: 500, height: 450 }} variant="woven" cols={3} gap={8}>
+  {images.map((item) => (
+    <ImageListItem key={item.img}>
+      <div
+        onMouseMove={(event) => handleMouseMove(event)}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div className={styles.imageContainer}>
+          <img
+            src={image.media_file}
+            alt={image.created_at}
+            onClick={() => handleImageClick(image)}
+            className={
+              image.is_landscape ? styles.imageHorizontal : styles.imageVertical
+            }
+          />
+        </div>
+      </div>
+    </ImageListItem>
+  ))}
+</ImageList> */
+}

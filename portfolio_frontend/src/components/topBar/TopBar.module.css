@@ -21,6 +21,8 @@
   position: absolute;
   margin-bottom: 160%;
 
+  cursor: pointer;
+
   animation-name: rotate360;
   animation-duration: 0.5s;
   animation-timing-function: ease;
