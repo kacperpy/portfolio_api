@@ -8,12 +8,14 @@ import { Drawer, Typography } from "@mui/material";
 import { data } from "./data/topBarContent";
 import { useAuth } from "../../utils/useAuth";
 import { useState } from "react";
+import { useIsMobileDevice } from "../../utils/useIsMobileDevice";
 
 export const TopBarMobile = () => {
   const navigate = useNavigate();
   const curLocation = useLocation();
   const { user, updateUser } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { isMobileDevice } = useIsMobileDevice();
 
   window.addEventListener("storage", () => {
     updateUser();
@@ -44,11 +46,11 @@ export const TopBarMobile = () => {
         <Box
           role="presentation"
           sx={{
-            width: "14rem",
+            width: isMobileDevice ? "14rem" : "8rem",
             height: "100%",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
+            justifyContent: isMobileDevice ? "center" : "top",
             alignItems: "center",
             gap: 1,
             backgroundColor: "whitesmoke",
@@ -58,7 +60,7 @@ export const TopBarMobile = () => {
             src={closeIcon}
             alt="close"
             onClick={() => setMenuOpen(false)}
-            className={styles.close}
+            className={isMobileDevice ? styles.close : styles.closeDesktop}
           ></img>
           {data.map((item, index) => (
             <Typography key={index}>

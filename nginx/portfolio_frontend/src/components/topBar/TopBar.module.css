@@ -29,6 +29,19 @@
   animation-iteration-count: 1;
 }
 
+.closeDesktop {
+  width: 3rem;
+  z-index: 10;
+  margin-top: 1rem;
+
+  cursor: pointer;
+
+  animation-name: rotate360;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
+}
+
 @keyframes rotate360 {
   from {
     transform: rotate(0deg);
