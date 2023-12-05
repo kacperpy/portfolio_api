@@ -5,6 +5,7 @@ import { mockVideos } from "./mockData";
 
 export const VideoPage = () => {
   const [hoveredItem, setHoveredItem] = useState<number | undefined>(undefined);
+  const [focusedItem, setFocusedItem] = useState<number | undefined>(undefined);
 
   return (
     <Box
@@ -70,6 +71,9 @@ export const VideoPage = () => {
               key={index + 1}
               url={video.url}
               controls={hoveredItem === index}
+              loop
+              playing
+              muted
               width={video.isLandscape ? "50vw" : "auto"}
               height={video.isLandscape ? "auto" : "50vw"}
             />
