@@ -46,12 +46,13 @@ export const TopBarMobile = () => {
         <Box
           role="presentation"
           sx={{
-            width: isMobileDevice ? "14rem" : "8rem",
+            width: "14rem",
             height: "100%",
             display: "flex",
             flexDirection: "column",
             justifyContent: isMobileDevice ? "center" : "top",
-            alignItems: "center",
+            alignItems: isMobileDevice ? "center" : "end",
+            paddingRight: isMobileDevice ? 0 : "2rem",
             gap: 1,
             backgroundColor: "whitesmoke",
           }}
@@ -78,7 +79,7 @@ export const TopBarMobile = () => {
               </Link>
             </Typography>
           ))}
-          <Typography>
+          <Typography sx={{ paddingTop: "1rem" }}>
             {user ? (
               <Link
                 onClick={() => setMenuOpen(false)}
