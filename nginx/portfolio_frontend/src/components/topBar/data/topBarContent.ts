@@ -19,4 +19,8 @@ export const data = [
     url: "/about",
     name: "About",
   },
+  {
+    url: "/shop",
+    name: "Shop",
+  },
 ];

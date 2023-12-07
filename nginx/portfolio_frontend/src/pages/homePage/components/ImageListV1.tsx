@@ -1,10 +1,4 @@
-import {
-  Divider,
-  Grid,
-  ImageList,
-  ImageListItem,
-  Typography,
-} from "@mui/material";
+import { Divider, ImageList, ImageListItem, Typography } from "@mui/material";
 import styles from "./ImageListV1.module.css";
 import { useIsMobileDevice } from "../../../utils/useIsMobileDevice";
 
@@ -76,7 +70,7 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
       }}
       variant={isMobileDevice ? "standard" : "woven"}
       cols={isMobileDevice ? 1 : 3}
-      gap={isMobileDevice ? 10 : 100}
+      gap={isMobileDevice ? 10 : 40}
     >
       {images.map((image) => (
         <ImageListItem key={image.uuid}>
@@ -100,9 +94,9 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
           <div
             style={{
               textAlign: "left",
-              marginBottom: "2rem",
+              marginBottom: image.is_landscape ? "8rem" : "10rem",
               marginLeft:
-                image.is_landscape || window.innerWidth < 1400 ? 0 : "15%",
+                image.is_landscape || window.innerWidth < 1400 ? 0 : "5%",
             }}
           >
             <Typography fontSize={12}>{image.filter}</Typography>
@@ -120,27 +114,3 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
     </ImageList>
   );
 };
-
-{
-  /* <ImageList sx={{ width: 500, height: 450 }} variant="woven" cols={3} gap={8}>
-  {images.map((item) => (
-    <ImageListItem key={item.img}>
-      <div
-        onMouseMove={(event) => handleMouseMove(event)}
-        onMouseLeave={handleMouseLeave}
-      >
-        <div className={styles.imageContainer}>
-          <img
-            src={image.media_file}
-            alt={image.created_at}
-            onClick={() => handleImageClick(image)}
-            className={
-              image.is_landscape ? styles.imageHorizontal : styles.imageVertical
-            }
-          />
-        </div>
-      </div>
-    </ImageListItem>
-  ))}
-</ImageList> */
-}

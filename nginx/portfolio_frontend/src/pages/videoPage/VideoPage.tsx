@@ -5,7 +5,6 @@ import { mockVideos } from "./mockData";
 
 export const VideoPage = () => {
   const [hoveredItem, setHoveredItem] = useState<number | undefined>(undefined);
-  const [focusedItem, setFocusedItem] = useState<number | undefined>(undefined);
 
   return (
     <Box
