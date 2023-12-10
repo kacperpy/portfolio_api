@@ -46,13 +46,12 @@ export const TopBarMobile = () => {
         <Box
           role="presentation"
           sx={{
-            width: "14rem",
+            width: isMobileDevice ? "14rem" : "28rem",
             height: "100%",
             display: "flex",
             flexDirection: "column",
             justifyContent: isMobileDevice ? "center" : "top",
-            alignItems: isMobileDevice ? "center" : "end",
-            paddingRight: isMobileDevice ? 0 : "2rem",
+            alignItems: "center",
             gap: 1,
             backgroundColor: "whitesmoke",
           }}
