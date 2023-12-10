@@ -94,9 +94,13 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
           <div
             style={{
               textAlign: "left",
-              marginBottom: image.is_landscape ? "8rem" : "10rem",
+              marginBottom: isMobileDevice
+                ? 0
+                : image.is_landscape
+                ? "8rem"
+                : "10rem",
               marginLeft:
-                image.is_landscape || window.innerWidth < 1400 ? 0 : "5%",
+                image.is_landscape || window.innerWidth < 1400 ? 0 : "15%",
             }}
           >
             <Typography fontSize={12}>{image.filter}</Typography>

@@ -33,6 +33,9 @@
   width: 3rem;
   z-index: 10;
   margin-top: 1rem;
+  margin-bottom: 30vh;
+  align-self: flex-end;
+  margin-right: 2rem;
 
   cursor: pointer;
 
