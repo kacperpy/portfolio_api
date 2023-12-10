@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import { createCustomTheme } from "./utils/createCustomTheme";
 import { ThemeProvider } from "@emotion/react";
 import { HomePage } from "./pages/homePage/HomePage";
-import { TopBar } from "./components/topBar/TopBar";
 import { VideoPage } from "./pages/videoPage/VideoPage";
 import { LoginPage } from "./pages/loginPage/LoginPage";
 import { ClientPage } from "./pages/clientPage/ClientPage";
