@@ -104,7 +104,19 @@ export const ImageDialog = ({ image, onClose }: ImageDialogProps) => {
   }, [images]);
 
   return (
-    <Dialog open={!isLoading} onClose={onClose} maxWidth={false}>
+    <Dialog
+      open={!isLoading}
+      onClose={onClose}
+      maxWidth={false}
+      slotProps={{
+        backdrop: {
+          style: {
+            backgroundColor: "whitesmoke", // Set the entire backdrop to white
+            opacity: 1, // Ensure it's not transparent or semi-transparent
+          },
+        },
+      }}
+    >
       {curDimensions !== null ? (
         <Carousel
           index={currentImageIndex}
