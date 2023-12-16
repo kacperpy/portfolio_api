@@ -9,12 +9,12 @@ import { LoginPage } from "./pages/loginPage/LoginPage";
 import { ClientPage } from "./pages/clientPage/ClientPage";
 import { AboutPage } from "./pages/aboutPage/AboutPage";
 import { TopBarMobile } from "./components/topBar/TopBarMobile";
-import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
 import { VideoPageMobile } from "./pages/videoPage/VideoPageMobile";
 import { useIsMobileDevice } from "./utils/useIsMobileDevice";
 import { ContactPage } from "./pages/contactPage/ContactPage";
-// import { SideBar } from "./components/sideBar/SideBar";
+import { Footer } from "./components/footer/Footer";
+import { DatenschutzerPage } from "./pages/datenschutzer/DatenschutzerPage";
+import { ImpressumPage } from "./pages/impressum/ImpressumPage";
 
 function App() {
   const theme = createCustomTheme();
@@ -34,17 +34,11 @@ function App() {
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/client" element={<ClientPage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
+          <Route path="/datenschutzer" element={<DatenschutzerPage />}></Route>
+          <Route path="/impressum" element={<ImpressumPage />}></Route>
         </Routes>
       </div>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          paddingTop: 4,
-        }}
-      >
-        <Typography>Valeriano Di Domenico©</Typography>
-      </Box>
+      <Footer />
     </ThemeProvider>
   );
 }

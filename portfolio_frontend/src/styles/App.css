@@ -2,7 +2,7 @@
   background-color: whitesmoke;
   text-align: center;
   place-items: center;
-  height: 100%;
+  min-height: 90vh;
 }
 
 ::-webkit-scrollbar {
