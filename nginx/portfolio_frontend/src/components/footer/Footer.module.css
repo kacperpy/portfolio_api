@@ -1,0 +1,37 @@
+.linkTextInactive,
+.linkTextActive {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.7rem;
+  font-size: 0.9em;
+  transition: color 0.3s ease-in-out; /* adjust the time as needed */
+}
+
+.linkTextInactive::after,
+.linkTextActive::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  bottom: -1px;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease-in-out; /* adjust the time as needed */
+}
+
+.linkTextInactive::after {
+  width: 0;
+}
+
+.linkTextActive::after {
+  width: 30%;
+}
+
+.linkTextInactive:hover::after,
+.linkTextActive:hover::after {
+  width: 30%;
+}
+
+.linkTextInactive:hover {
+  color: #9b9b9b;
+}
