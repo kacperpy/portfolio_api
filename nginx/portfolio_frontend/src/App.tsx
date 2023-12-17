@@ -15,6 +15,7 @@ import { ContactPage } from "./pages/contactPage/ContactPage";
 import { Footer } from "./components/footer/Footer";
 import { DatenschutzerPage } from "./pages/datenschutzer/DatenschutzerPage";
 import { ImpressumPage } from "./pages/impressum/ImpressumPage";
+import { FooterMobile } from "./components/footer/FooterMobile";
 
 function App() {
   const theme = createCustomTheme();
@@ -34,11 +35,14 @@ function App() {
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/client" element={<ClientPage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
-          <Route path="/datenschutzer" element={<DatenschutzerPage />}></Route>
+          <Route
+            path="/datenschutzerklarung"
+            element={<DatenschutzerPage />}
+          ></Route>
           <Route path="/impressum" element={<ImpressumPage />}></Route>
         </Routes>
       </div>
-      <Footer />
+      {isMobileDevice ? <FooterMobile /> : <Footer />}
     </ThemeProvider>
   );
 }

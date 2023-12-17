@@ -3,18 +3,18 @@ import { Link, useLocation } from "react-router-dom";
 import { data } from "../topBar/data/topBarContent";
 import styles from "./Footer.module.css";
 
-export const Footer = () => {
+export const FooterMobile = () => {
   const curLocation = useLocation();
   return (
     <Box
       sx={{
         display: "flex",
-        justifyContent: "space-between",
-        paddingY: 4,
-        paddingX: 8,
+        flexDirection: "column",
+        alignItems: "center",
+        paddingY: 2,
+        gap: 4,
       }}
     >
-      <Typography fontSize={14}>Valeriano Di Domenico©</Typography>
       <Box
         sx={{
           display: "flex",
@@ -49,6 +49,7 @@ export const Footer = () => {
           </Link>
         </Typography>
       </Box>
+      <Typography fontSize={14}>Valeriano Di Domenico©</Typography>
     </Box>
   );
 };
