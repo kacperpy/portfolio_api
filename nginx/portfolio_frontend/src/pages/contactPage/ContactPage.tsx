@@ -57,7 +57,9 @@ export const ContactPage = () => {
             }}
           >
             <img src={mailIcon} alt="mail" style={{ height: "2rem" }}></img>
-            <Typography variant="body1">mail@valerianodidomenico.ch</Typography>
+            <Typography variant="body1">
+              mail(at)valerianodidomenico.ch
+            </Typography>
           </Box>
         </Box>
         <Divider
