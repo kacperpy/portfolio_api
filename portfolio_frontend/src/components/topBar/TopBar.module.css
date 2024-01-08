@@ -19,7 +19,7 @@
   width: 3rem;
   z-index: 10;
   position: absolute;
-  margin-bottom: 160%;
+  margin-bottom: 320%;
 
   cursor: pointer;
 
@@ -32,8 +32,10 @@
 .closeDesktop {
   width: 3rem;
   z-index: 10;
+  position: absolute;
+  margin-bottom: 205%;
   margin-top: 1rem;
-  margin-bottom: 30vh;
+  /* margin-bottom: 10vh; */
   align-self: flex-end;
   margin-right: 2rem;
 
@@ -69,7 +71,7 @@
   text-decoration: none;
   color: inherit;
   padding: 0.7rem;
-  font-size: 0.8em;
+  font-size: 1.2rem;
 }
 
 .linkTextInactive,
@@ -78,7 +80,7 @@
   text-decoration: none;
   color: inherit;
   padding: 0.7rem;
-  font-size: 0.9em;
+  font-size: 1.2rem;
   transition: color 0.3s ease-in-out; /* adjust the time as needed */
 }
 
