@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import { Route, Routes } from "react-router-dom";
 import { createCustomTheme } from "./utils/createCustomTheme";
@@ -16,15 +16,40 @@ import { Footer } from "./components/footer/Footer";
 import { DatenschutzerPage } from "./pages/datenschutzer/DatenschutzerPage";
 import { ImpressumPage } from "./pages/impressum/ImpressumPage";
 import { FooterMobile } from "./components/footer/FooterMobile";
+import { QuickScrollUp } from "./components/quickScrollUp/QuickScrollUp";
 
 function App() {
   const theme = createCustomTheme();
   const { isMobileDevice } = useIsMobileDevice();
+  const [isScrollArrowVisible, setSsScrollArrowVisible] = useState(false);
+
+  useEffect(() => {
+    setSsScrollArrowVisible(false);
+  }, []);
+
+  const handleScroll = () => {
+    const scrollTop = window.scrollY;
+    const clientHeight = document.documentElement.clientHeight;
+    const scrollHeight = document.documentElement.scrollHeight;
+
+    if (scrollTop + clientHeight >= scrollHeight * 0.7) {
+      // alert("ocwfwefew");
+      if (!isScrollArrowVisible) {
+        setSsScrollArrowVisible(true);
+      }
+    } else {
+      if (isScrollArrowVisible) {
+        setSsScrollArrowVisible(false);
+      }
+    }
+  };
+  window.addEventListener("scroll", handleScroll, true);
 
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
         <TopBarMobile />
+        {isScrollArrowVisible && <QuickScrollUp />}
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Box, Button } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import { ImageDialog } from "../../components/imageDialog/ImageDialog";
 import { ImageListV1 } from "./components/ImageListV1";
 import axios from "axios";
@@ -31,6 +31,7 @@ export const HomePage = () => {
       )
       .then((response: { data: any }) => {
         setImages((prevImages) => [...prevImages, ...response.data.results]);
+        console.log(images);
         curPage === 1
           ? setCurPage((prevPage) => prevPage + 3)
           : setCurPage((prevPage) => prevPage + 1);
@@ -53,6 +54,7 @@ export const HomePage = () => {
 
   const handleImageClick = (image: Image) => {
     setSelectedImage(image);
+    console.log(image);
   };
 
   const handleClose = () => {
@@ -80,12 +82,6 @@ export const HomePage = () => {
     <Container className={styles.pageContainer}>
       <Box width="100%" height="100%">
         <ImageListV1 images={images} handleImageClick={handleImageClick} />
-        {/* <Button
-          onClick={handleLoadMore}
-          style={{ marginTop: 50, marginBottom: 50 }}
-        >
-          Load more
-        </Button> */}
       </Box>
       {selectedImage !== null ? (
         <ImageDialog image={selectedImage} onClose={handleClose} />

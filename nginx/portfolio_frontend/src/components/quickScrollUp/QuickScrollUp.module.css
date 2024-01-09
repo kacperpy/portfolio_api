@@ -1,0 +1,24 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.arrow {
+  position: fixed;
+  width: 3rem;
+  cursor: pointer;
+  z-index: 100;
+  margin-top: 100vh;
+  animation: fadeInUp 1s ease-in-out forwards;
+  transition: transform 0.3s ease-in-out;
+}
+
+arrow:hover {
+  transform: translateY(10px);
+}
