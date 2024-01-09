@@ -1,4 +1,4 @@
-import { Divider, ImageList, ImageListItem, Typography } from "@mui/material";
+import { ImageList, ImageListItem, Typography } from "@mui/material";
 import styles from "./ImageListV1.module.css";
 import { useIsMobileDevice } from "../../../utils/useIsMobileDevice";
 
@@ -108,7 +108,7 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
               fontSize={18}
               fontWeight={100}
             >
-              {image.client}
+              {image.caption}
             </Typography>
           </div>
         </ImageListItem>
