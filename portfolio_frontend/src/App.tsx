@@ -17,6 +17,7 @@ import { DatenschutzerPage } from "./pages/datenschutzer/DatenschutzerPage";
 import { ImpressumPage } from "./pages/impressum/ImpressumPage";
 import { FooterMobile } from "./components/footer/FooterMobile";
 import { QuickScrollUp } from "./components/quickScrollUp/QuickScrollUp";
+import { PortraitPage } from "./pages/portraitPage/PortraitPage";
 
 function App() {
   const theme = createCustomTheme();
@@ -65,6 +66,7 @@ function App() {
             element={<DatenschutzerPage />}
           ></Route>
           <Route path="/impressum" element={<ImpressumPage />}></Route>
+          <Route path="/portrait" element={<PortraitPage />}></Route>
         </Routes>
       </div>
       {isMobileDevice ? <FooterMobile /> : <Footer />}

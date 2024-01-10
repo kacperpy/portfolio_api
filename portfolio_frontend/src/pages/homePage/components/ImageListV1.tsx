@@ -1,4 +1,9 @@
-import { ImageList, ImageListItem, Typography } from "@mui/material";
+import {
+  ImageList,
+  ImageListItem,
+  ImageListProps,
+  Typography,
+} from "@mui/material";
 import styles from "./ImageListV1.module.css";
 import { useIsMobileDevice } from "../../../utils/useIsMobileDevice";
 
@@ -16,9 +21,14 @@ interface Image {
 interface ImageListV1Props {
   images: Image[];
   handleImageClick: (image: Image) => void;
+  listStyle: "standard" | "woven" | "masonry" | "quilted";
 }
 
-export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
+export const ImageListV1 = ({
+  images,
+  handleImageClick,
+  listStyle,
+}: ImageListV1Props) => {
   const { isMobileDevice } = useIsMobileDevice();
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const tiltContainer = event.currentTarget;
@@ -68,7 +78,7 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
         paddingBottom: "4rem",
         overflow: "hidden",
       }}
-      variant={isMobileDevice ? "standard" : "woven"}
+      variant={isMobileDevice ? "standard" : listStyle}
       cols={isMobileDevice ? 1 : 3}
       gap={isMobileDevice ? 10 : 40}
     >
