@@ -9,7 +9,7 @@ import { useAuth } from "../../utils/useAuth";
 import { useState } from "react";
 import { useIsMobileDevice } from "../../utils/useIsMobileDevice";
 
-export const TopBarMobile = () => {
+export const TopBarV2 = () => {
   const curLocation = useLocation();
   const { user, updateUser } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -28,6 +28,31 @@ export const TopBarMobile = () => {
         margin: 2,
       }}
     >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 1,
+        }}
+      >
+        {data1.map((item, index) => (
+          <Typography key={index}>
+            {" "}
+            <Link
+              onClick={() => setMenuOpen(false)}
+              to={item.url}
+              className={
+                curLocation.pathname === item.url
+                  ? styles.linkTextActive
+                  : styles.linkTextInactive
+              }
+            >
+              {item.name}
+            </Link>
+          </Typography>
+        ))}
+      </Box>
       <img
         src={menuIcon}
         alt="menu"
@@ -42,7 +67,7 @@ export const TopBarMobile = () => {
             height: "100%",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-evenly",
+            justifyContent: "flex-start",
             alignItems: "center",
             gap: 1,
             backgroundColor: "whitesmoke",
@@ -58,32 +83,8 @@ export const TopBarMobile = () => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
-              gap: 1,
-            }}
-          >
-            {data1.map((item, index) => (
-              <Typography key={index}>
-                {" "}
-                <Link
-                  onClick={() => setMenuOpen(false)}
-                  to={item.url}
-                  className={
-                    curLocation.pathname === item.url
-                      ? styles.linkTextActive
-                      : styles.linkTextInactive
-                  }
-                >
-                  {item.name}
-                </Link>
-              </Typography>
-            ))}
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
+              alignItems: "flex-start",
+              marginTop: 16,
               gap: 1,
             }}
           >

@@ -84,7 +84,7 @@ export const HomePage = () => {
         <ImageListV1
           images={images}
           handleImageClick={handleImageClick}
-          listStyle="woven"
+          listStyle="masonry"
         />
       </Box>
       {selectedImage !== null ? (
