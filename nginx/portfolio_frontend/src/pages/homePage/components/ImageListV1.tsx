@@ -6,6 +6,7 @@ import {
 } from "@mui/material";
 import styles from "./ImageListV1.module.css";
 import { useIsMobileDevice } from "../../../utils/useIsMobileDevice";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 interface Image {
   uuid: string;
@@ -72,57 +73,52 @@ export const ImageListV1 = ({
   };
 
   return (
-    <ImageList
-      sx={{
-        paddingTop: "1rem",
-        paddingBottom: "4rem",
-        overflow: "hidden",
-      }}
-      variant={isMobileDevice ? "standard" : listStyle}
-      cols={isMobileDevice ? 1 : 3}
-      gap={isMobileDevice ? 10 : 40}
+    // <ImageList
+    //   sx={{
+    //     paddingTop: "1rem",
+    //     paddingBottom: "4rem",
+    //     overflow: "hidden",
+    //   }}
+    //   variant={isMobileDevice ? "standard" : listStyle}
+    //   cols={isMobileDevice ? 1 : 3}
+    //   gap={isMobileDevice ? 10 : 40}
+    // >
+    <ResponsiveMasonry
+      columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3, 1200: 4 }}
     >
-      {images.map((image) => (
-        <ImageListItem key={image.uuid}>
-          <div
-            onMouseMove={(event) => handleMouseMove(event)}
-            onMouseLeave={handleMouseLeave}
-          >
-            <div className={styles.imageContainer}>
-              <img
-                src={image.media_file}
-                alt={image.created_at}
-                onClick={() => handleImageClick(image)}
-                className={
-                  image.is_landscape
-                    ? styles.imageHorizontal
-                    : styles.imageVertical
-                }
-              />
-            </div>
-          </div>
-          <div
-            style={{
-              textAlign: "center",
-              marginBottom: isMobileDevice
-                ? 0
-                : image.is_landscape
-                ? "8rem"
-                : "10rem",
-            }}
-          >
-            {/* <Typography fontSize={12}>{image.filter}</Typography> */}
-            {/* <Divider style={{ width: "2rem" }} /> */}
-            <Typography
-              style={{ fontWeight: "bold" }}
-              fontSize={18}
-              fontWeight={100}
+      <Masonry columnsCount={4} gutter="40px">
+        {images.map((image) => (
+          <ImageListItem key={image.uuid} className={styles.imageListItem}>
+            <img
+              src={image.media_file}
+              alt={image.created_at}
+              onMouseMove={(event) => handleMouseMove(event)}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => handleImageClick(image)}
+              className={
+                image.is_landscape
+                  ? styles.imageHorizontal
+                  : styles.imageVertical
+              }
+            />
+            <div
+              style={{
+                textAlign: "center",
+                marginBottom: isMobileDevice ? 0 : 2,
+              }}
             >
-              {image.caption}
-            </Typography>
-          </div>
-        </ImageListItem>
-      ))}
-    </ImageList>
+              <Typography
+                style={{ fontWeight: "bold" }}
+                fontSize={18}
+                fontWeight={100}
+              >
+                {image.caption}
+              </Typography>
+            </div>
+          </ImageListItem>
+        ))}
+      </Masonry>
+    </ResponsiveMasonry>
+    // </ImageList>
   );
 };

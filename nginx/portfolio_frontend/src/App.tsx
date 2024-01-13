@@ -18,6 +18,7 @@ import { ImpressumPage } from "./pages/impressum/ImpressumPage";
 import { FooterMobile } from "./components/footer/FooterMobile";
 import { QuickScrollUp } from "./components/quickScrollUp/QuickScrollUp";
 import { PortraitPage } from "./pages/portraitPage/PortraitPage";
+import { TopBarV2 } from "./components/topBar/TopBarV2";
 
 function App() {
   const theme = createCustomTheme();
@@ -49,7 +50,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <TopBarMobile />
+        {isMobileDevice ? <TopBarMobile /> : <TopBarV2 />}
         {isScrollArrowVisible && <QuickScrollUp />}
         <Routes>
           <Route path="/" element={<HomePage />}></Route>

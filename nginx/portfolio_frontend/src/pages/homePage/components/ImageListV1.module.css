@@ -4,13 +4,14 @@
 
 .imageListItem {
   cursor: pointer;
+  margin-bottom: 1rem;
 }
 
 .imageHorizontal {
   width: 100%;
   height: 100%;
   object-fit: cover !important;
-  aspect-ratio: 7 / 5;
+  aspect-ratio: 8 / 5;
 }
 
 .imageVertical {
