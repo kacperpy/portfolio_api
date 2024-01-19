@@ -84,7 +84,8 @@ export const PortraitPage = () => {
         <ImageListV1
           images={images}
           handleImageClick={handleImageClick}
-          listStyle="masonry"
+          listColsCount={3}
+          listGap="60px"
         />
       </Box>
       {selectedImage !== null ? (

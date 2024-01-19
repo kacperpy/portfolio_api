@@ -1,9 +1,4 @@
-import {
-  ImageList,
-  ImageListItem,
-  ImageListProps,
-  Typography,
-} from "@mui/material";
+import { ImageListItem, Typography } from "@mui/material";
 import styles from "./ImageListV1.module.css";
 import { useIsMobileDevice } from "../../../utils/useIsMobileDevice";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
@@ -22,13 +17,15 @@ interface Image {
 interface ImageListV1Props {
   images: Image[];
   handleImageClick: (image: Image) => void;
-  listStyle: "standard" | "woven" | "masonry" | "quilted";
+  listColsCount?: number;
+  listGap?: string;
 }
 
 export const ImageListV1 = ({
   images,
   handleImageClick,
-  listStyle,
+  listColsCount,
+  listGap,
 }: ImageListV1Props) => {
   const { isMobileDevice } = useIsMobileDevice();
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -73,20 +70,14 @@ export const ImageListV1 = ({
   };
 
   return (
-    // <ImageList
-    //   sx={{
-    //     paddingTop: "1rem",
-    //     paddingBottom: "4rem",
-    //     overflow: "hidden",
-    //   }}
-    //   variant={isMobileDevice ? "standard" : listStyle}
-    //   cols={isMobileDevice ? 1 : 3}
-    //   gap={isMobileDevice ? 10 : 40}
-    // >
     <ResponsiveMasonry
-      columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3, 1200: 4 }}
+      columnsCountBreakPoints={
+        listColsCount
+          ? { 350: 1, 750: 2, 900: 3, 1200: listColsCount }
+          : { 350: 1, 750: 2, 900: 3, 1200: 4 }
+      }
     >
-      <Masonry columnsCount={4} gutter="40px">
+      <Masonry gutter={listGap ? listGap : "40px"}>
         {images.map((image) => (
           <ImageListItem key={image.uuid} className={styles.imageListItem}>
             <img
@@ -119,6 +110,5 @@ export const ImageListV1 = ({
         ))}
       </Masonry>
     </ResponsiveMasonry>
-    // </ImageList>
   );
 };
