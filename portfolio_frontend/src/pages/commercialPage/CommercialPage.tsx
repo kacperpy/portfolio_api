@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Container, Box } from "@mui/material";
 import { ImageDialog } from "../../components/imageDialog/ImageDialog";
-import { ImageListV1 } from "./components/ImageListV1";
 import axios from "axios";
-import styles from "./HomePage.module.css";
+import styles from "./CommercialPage.module.css";
+import { ImageListV1 } from "../homePage/components/ImageListV1";
 
 interface Image {
   uuid: string;
@@ -16,7 +16,7 @@ interface Image {
   is_landscape: boolean;
 }
 
-export const HomePage = () => {
+export const CommercialPage = () => {
   const [images, setImages] = useState<Image[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selectedImage, setSelectedImage] = useState<Image | null>(null);
@@ -81,7 +81,12 @@ export const HomePage = () => {
   return (
     <Container className={styles.pageContainer}>
       <Box width="100%" height="100%">
-        <ImageListV1 images={images} handleImageClick={handleImageClick} />
+        <ImageListV1
+          images={images}
+          handleImageClick={handleImageClick}
+          listColsCount={3}
+          listGap="60px"
+        />
       </Box>
       {selectedImage !== null ? (
         <ImageDialog image={selectedImage} onClose={handleClose} />
