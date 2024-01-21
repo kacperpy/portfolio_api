@@ -39,7 +39,7 @@ class ListHomePageImages(generics.ListAPIView):
 class VideoClipViewSet(mixins.RetrieveModelMixin,
                        mixins.ListModelMixin,
                        viewsets.GenericViewSet):
-    queryset = VideoClip.objects.all()
+    queryset = VideoClip.objects.all().order_by('created_at')
     serializer_class = VideoClipReadSerializer
     pagination_class = CustomResultSetPaginator
     permission_classes = []
