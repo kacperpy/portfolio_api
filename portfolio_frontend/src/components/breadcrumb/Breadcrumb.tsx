@@ -7,7 +7,7 @@ export const Breadcrumb = () => {
   const curLocation = useLocation();
   const { isMobileDevice } = useIsMobileDevice();
 
-  return (
+  return curLocation.pathname.split("/")[1] === "" ? null : (
     <Box
       sx={{
         display: "flex",
@@ -16,11 +16,7 @@ export const Breadcrumb = () => {
         height: isMobileDevice ? "6rem" : "12rem",
       }}
     >
-      <Typography>
-        {curLocation.pathname.split("/")[1] === ""
-          ? "home"
-          : curLocation.pathname.split("/")[1]}
-      </Typography>
+      <Typography>{curLocation.pathname.split("/")[1]}</Typography>
       <img src={arrowDownIcon} alt="menu" style={{ width: "1.5rem" }}></img>
     </Box>
   );
