@@ -31,6 +31,10 @@ export const data1 = [
     name: "Home",
   },
   {
+    url: "/portfolio",
+    name: "Portfolio",
+  },
+  {
     url: "/commercial",
     name: "Commercial",
   },

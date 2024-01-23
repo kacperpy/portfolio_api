@@ -21,57 +21,47 @@ import { PortraitPage } from "./pages/portraitPage/PortraitPage";
 import { TopBarV2 } from "./components/topBar/TopBarV2";
 import { CommercialPage } from "./pages/commercialPage/CommercialPage";
 import { Breadcrumb } from "./components/breadcrumb/Breadcrumb";
+import { PortfolioPage } from "./pages/portfolioPage/PortfolioPage";
+import { BusinessPortraitPage } from "./pages/businessPortraitsPage/BusinessPortraitsPage";
+import { FoodPage } from "./pages/foodPage/FoodPage";
+import { SurfingPage } from "./pages/surfingPage/SurfingPage";
+import { ReportagePage } from "./pages/reportagePage/ReportagePage";
 
 function App() {
   const theme = createCustomTheme();
   const { isMobileDevice } = useIsMobileDevice();
-  const [isScrollArrowVisible, setSsScrollArrowVisible] = useState(false);
-
-  useEffect(() => {
-    setSsScrollArrowVisible(false);
-  }, []);
-
-  const handleScroll = () => {
-    const scrollTop = window.scrollY;
-    const clientHeight = document.documentElement.clientHeight;
-    const scrollHeight = document.documentElement.scrollHeight;
-
-    if (scrollTop + clientHeight >= scrollHeight * 0.7) {
-      // alert("ocwfwefew");
-      if (!isScrollArrowVisible) {
-        setSsScrollArrowVisible(true);
-      }
-    } else {
-      if (isScrollArrowVisible) {
-        setSsScrollArrowVisible(false);
-      }
-    }
-  };
-  window.addEventListener("scroll", handleScroll, true);
 
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
         {isMobileDevice ? <TopBarMobile /> : <TopBarV2 />}
         <Breadcrumb />
-        {isScrollArrowVisible && <QuickScrollUp />}
+        {/* <QuickScrollUp /> */}
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
+          <Route path="/portfolio" element={<PortfolioPage />}></Route>
+          <Route path="/commercial" element={<CommercialPage />}></Route>
+          <Route path="/portrait" element={<PortraitPage />}></Route>
+          <Route
+            path="/business-portraits"
+            element={<BusinessPortraitPage />}
+          ></Route>
+          <Route path="/food" element={<FoodPage />}></Route>
+          <Route path="/surfing" element={<SurfingPage />}></Route>
+          <Route path="/reportage" element={<ReportagePage />}></Route>
           <Route
             path="/video"
             element={isMobileDevice ? <VideoPageMobile /> : <VideoPage />}
           ></Route>
           <Route path="/contact" element={<ContactPage />}></Route>
+          <Route path="/about" element={<AboutPage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/client" element={<ClientPage />}></Route>
-          <Route path="/about" element={<AboutPage />}></Route>
           <Route
             path="/datenschutzerklarung"
             element={<DatenschutzerPage />}
           ></Route>
           <Route path="/impressum" element={<ImpressumPage />}></Route>
-          <Route path="/portrait" element={<PortraitPage />}></Route>
-          <Route path="/commercial" element={<CommercialPage />}></Route>
         </Routes>
       </div>
       {isMobileDevice ? <FooterMobile /> : <Footer />}

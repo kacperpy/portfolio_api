@@ -34,7 +34,7 @@ export const TopBarV2 = () => {
           flexDirection: "row",
           alignItems: "center",
           gap: 1,
-          marginRight: 1,
+          marginRight: 2,
         }}
       >
         {data1.map((item, index) => (

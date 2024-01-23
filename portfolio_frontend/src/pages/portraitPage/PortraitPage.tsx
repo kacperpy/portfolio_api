@@ -24,11 +24,11 @@ export const PortraitPage = () => {
 
   const fetchData = async () => {
     axios
-      .get<Image[]>(
-        `http://46.41.137.226/api/homepage-images/?page=${curPage}&size=${
-          curPage > 1 ? 3 : 9
-        }`
-      )
+    .get<Image[]>(
+      `http://46.41.137.226/api/filters/portrait_page/images?page=${curPage}&size=${
+        curPage > 1 ? 3 : 9
+      }`
+    )
       .then((response: { data: any }) => {
         setImages((prevImages) => [...prevImages, ...response.data.results]);
         console.log(images);

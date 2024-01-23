@@ -98,11 +98,7 @@ export const ImageListV1 = ({
                 marginBottom: isMobileDevice ? 0 : 2,
               }}
             >
-              <Typography
-                style={{ fontWeight: "bold" }}
-                fontSize={18}
-                fontWeight={100}
-              >
+              <Typography fontSize={18} fontWeight={100}>
                 {image.caption}
               </Typography>
             </div>

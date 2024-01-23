@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Container, Box } from "@mui/material";
 import { ImageDialog } from "../../components/imageDialog/ImageDialog";
 import axios from "axios";
-import styles from "./CommercialPage.module.css";
+import styles from "./PortfolioPage.module.css";
 import { ImageListV1 } from "../homePage/components/ImageListV1";
 
 interface Image {
@@ -16,7 +16,7 @@ interface Image {
   is_landscape: boolean;
 }
 
-export const CommercialPage = () => {
+export const PortfolioPage = () => {
   const [images, setImages] = useState<Image[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selectedImage, setSelectedImage] = useState<Image | null>(null);
@@ -25,7 +25,7 @@ export const CommercialPage = () => {
   const fetchData = async () => {
     axios
       .get<Image[]>(
-        `http://46.41.137.226/api/filters/commercial_page/images?page=${curPage}&size=${
+        `http://46.41.137.226/api/filters/portfolio_page/images?page=${curPage}&size=${
           curPage > 1 ? 3 : 9
         }`
       )
