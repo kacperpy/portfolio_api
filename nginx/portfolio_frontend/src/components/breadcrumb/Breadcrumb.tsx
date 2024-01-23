@@ -7,7 +7,19 @@ export const Breadcrumb = () => {
   const curLocation = useLocation();
   const { isMobileDevice } = useIsMobileDevice();
 
-  return curLocation.pathname.split("/")[1] === "" ? null : (
+  function isBreadcrumbHidden() {
+    return (
+      curLocation.pathname.split("/")[1] === "" ||
+      curLocation.pathname.split("/")[1] === "contact" ||
+      curLocation.pathname.split("/")[1] === "about" ||
+      curLocation.pathname.split("/")[1] === "shop" ||
+      curLocation.pathname.split("/")[1] === "login" ||
+      curLocation.pathname.split("/")[1] === "datenschutzerklarung" ||
+      curLocation.pathname.split("/")[1] === "impressum"
+    );
+  }
+
+  return isBreadcrumbHidden() ? null : (
     <Box
       sx={{
         display: "flex",
