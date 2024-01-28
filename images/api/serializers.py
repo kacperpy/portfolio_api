@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from images.core.tools import get_formatted_date
-from images.models import Image
+from images.models import Image, VideoClip
 
 
 class ImageReadSerializer(serializers.ModelSerializer):
@@ -45,10 +45,9 @@ class VideoClipReadSerializer(serializers.ModelSerializer):
     filter = serializers.SerializerMethodField()
     client = serializers.SerializerMethodField()
     file_name = serializers.SerializerMethodField()
-    is_landscape = serializers.SerializerMethodField()
 
     class Meta:
-        model = Image
+        model = VideoClip
         fields = [
             'uuid',
             'created_at',
@@ -71,6 +70,3 @@ class VideoClipReadSerializer(serializers.ModelSerializer):
 
     def get_file_name(self, instance):
         return instance.media_file.name
-
-    def get_is_landscape(self, instance):
-        return instance.media_file.width > instance.media_file.height

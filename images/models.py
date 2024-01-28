@@ -66,6 +66,7 @@ class Image(models.Model):
     def __str__(self):
         return f"{self.media_file.name};{get_formatted_date(self.created_at)}"
 
+
 class VideoClip(models.Model):
     uuid = models.UUIDField(
         db_index=True,
@@ -92,6 +93,9 @@ class VideoClip(models.Model):
     )
     is_homepage = models.BooleanField(
         default=False
+    )
+    is_landscape = models.BooleanField(
+        default=True
     )
 
     def __str__(self):
