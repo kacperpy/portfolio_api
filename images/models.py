@@ -43,6 +43,7 @@ class Image(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     media_file = models.ImageField()
+    media_file_thumb = models.ImageField(blank=True, null=True)
     filter = models.ForeignKey(
         Filter,
         related_name='images',
