@@ -49,16 +49,27 @@ class ImageReadSerializer(serializers.ModelSerializer):
         output_io_stream = io.BytesIO()
         img.save(output_io_stream, format='JPEG', quality=30)
         output_io_stream.seek(0)
-        new_image = ContentFile(output_io_stream.read(), name=image.name)
+        new_image = ContentFile(output_io_stream.read(),
+                                name=f'compressed_{image.name}')
 
         return new_image
 
     def create(self, validated_data):
-        image = validated_data.get('media_file', None)
-        if image:
-            validated_data['media_file_thumb'] = self.compress_image(image)
+        original_image = validated_data.get('media_file')
+        if original_image:
+            compressed_image = self.compress_image(original_image)
+            validated_data['media_file_thumb'] = compressed_image
 
         return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        original_image = validated_data.get('media_file', None)
+
+        if original_image:
+            compressed_image = self.compress_image(original_image)
+            validated_data['media_file_thumb'] = compressed_image
+
+        return super().update(instance, validated_data)
 
 
 class VideoClipReadSerializer(serializers.ModelSerializer):
