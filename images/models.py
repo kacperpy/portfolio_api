@@ -78,7 +78,7 @@ class Image(models.Model):
             img.save(output_io_stream, format='JPEG', quality=30)
             output_io_stream.seek(0)
             self.media_file_thumb.save(f"compressed_{self.media_file.name}", content=ContentFile(
-                output_io_stream.read()), save=False)
+                output_io_stream.read()), save=True)
 
         super().save(*args, **kwargs)
 
