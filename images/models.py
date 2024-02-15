@@ -47,7 +47,7 @@ class Image(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     media_file = models.ImageField()
-    media_file_thumb = models.ImageField(blank=True, null=True)
+    media_file_thumb = models.ImageField()
     filter = models.ForeignKey(
         Filter,
         related_name='images',
@@ -70,16 +70,6 @@ class Image(models.Model):
 
     def __str__(self):
         return f"{self.media_file.name};{get_formatted_date(self.created_at)}"
-
-    def save(self, *args, **kwargs):
-        img = PilImage.open(self.media_file)
-        output_io_stream = io.BytesIO()
-        img.save(output_io_stream, format='JPEG', quality=30)
-        output_io_stream.seek(0)
-        self.media_file_thumb.save(f"compressed_{self.media_file.name}", content=ContentFile(
-            output_io_stream.read()), save=True)
-
-        super().save(*args, **kwargs)
 
 
 class VideoClip(models.Model):
