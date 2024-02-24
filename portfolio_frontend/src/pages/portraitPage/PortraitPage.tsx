@@ -4,17 +4,7 @@ import { ImageDialog } from "../../components/imageDialog/ImageDialog";
 import axios from "axios";
 import styles from "./PortraitPage.module.css";
 import { ImageListV1 } from "../homePage/components/ImageListV1";
-
-interface Image {
-  uuid: string;
-  created_at: string;
-  media_file: string;
-  filter: string;
-  client: string;
-  file_name: string;
-  caption: string;
-  is_landscape: boolean;
-}
+import { Image } from "../../api/types";
 
 export const PortraitPage = () => {
   const [images, setImages] = useState<Image[]>([]);
@@ -24,11 +14,11 @@ export const PortraitPage = () => {
 
   const fetchData = async () => {
     axios
-    .get<Image[]>(
-      `http://46.41.137.226/api/filters/portrait_page/images?page=${curPage}&size=${
-        curPage > 1 ? 3 : 9
-      }`
-    )
+      .get<Image[]>(
+        `http://46.41.137.226/api/filters/portrait_page/images?page=${curPage}&size=${
+          curPage > 1 ? 3 : 9
+        }`
+      )
       .then((response: { data: any }) => {
         setImages((prevImages) => [...prevImages, ...response.data.results]);
         console.log(images);

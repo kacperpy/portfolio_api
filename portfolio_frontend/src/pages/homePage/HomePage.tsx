@@ -4,17 +4,7 @@ import { ImageDialog } from "../../components/imageDialog/ImageDialog";
 import { ImageListV1 } from "./components/ImageListV1";
 import axios from "axios";
 import styles from "./HomePage.module.css";
-
-interface Image {
-  uuid: string;
-  created_at: string;
-  media_file: string;
-  filter: string;
-  client: string;
-  file_name: string;
-  caption: string;
-  is_landscape: boolean;
-}
+import { Image } from "../../api/types";
 
 export const HomePage = () => {
   const [images, setImages] = useState<Image[]>([]);

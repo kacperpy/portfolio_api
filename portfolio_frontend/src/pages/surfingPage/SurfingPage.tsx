@@ -4,17 +4,7 @@ import { ImageDialog } from "../../components/imageDialog/ImageDialog";
 import axios from "axios";
 import styles from "./SurfingPage.module.css";
 import { ImageListV1 } from "../homePage/components/ImageListV1";
-
-interface Image {
-  uuid: string;
-  created_at: string;
-  media_file: string;
-  filter: string;
-  client: string;
-  file_name: string;
-  caption: string;
-  is_landscape: boolean;
-}
+import { Image } from "../../api/types";
 
 export const SurfingPage = () => {
   const [images, setImages] = useState<Image[]>([]);
@@ -24,11 +14,11 @@ export const SurfingPage = () => {
 
   const fetchData = async () => {
     axios
-    .get<Image[]>(
-      `http://46.41.137.226/api/filters/surfing_page/images?page=${curPage}&size=${
-        curPage > 1 ? 3 : 9
-      }`
-    )
+      .get<Image[]>(
+        `http://46.41.137.226/api/filters/surfing_page/images?page=${curPage}&size=${
+          curPage > 1 ? 3 : 9
+        }`
+      )
       .then((response: { data: any }) => {
         setImages((prevImages) => [...prevImages, ...response.data.results]);
         console.log(images);

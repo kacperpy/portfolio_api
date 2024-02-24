@@ -4,17 +4,7 @@ import { ImageDialog } from "../../components/imageDialog/ImageDialog";
 import axios from "axios";
 import styles from "./CommercialPage.module.css";
 import { ImageListV1 } from "../homePage/components/ImageListV1";
-
-interface Image {
-  uuid: string;
-  created_at: string;
-  media_file: string;
-  filter: string;
-  client: string;
-  file_name: string;
-  caption: string;
-  is_landscape: boolean;
-}
+import { Image } from "../../api/types";
 
 export const CommercialPage = () => {
   const [images, setImages] = useState<Image[]>([]);
