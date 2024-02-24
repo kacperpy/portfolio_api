@@ -2,17 +2,7 @@ import { ImageListItem, Typography } from "@mui/material";
 import styles from "./ImageListV1.module.css";
 import { useIsMobileDevice } from "../../../utils/useIsMobileDevice";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-
-interface Image {
-  uuid: string;
-  created_at: string;
-  media_file: string;
-  filter: string;
-  client: string;
-  file_name: string;
-  caption: string;
-  is_landscape: boolean;
-}
+import { Image } from "../../../api/types";
 
 interface ImageListV1Props {
   images: Image[];
@@ -81,7 +71,7 @@ export const ImageListV1 = ({
         {images.map((image) => (
           <ImageListItem key={image.uuid} className={styles.imageListItem}>
             <img
-              src={image.media_file}
+              src={image.media_file_thumb}
               alt={image.created_at}
               onMouseMove={(event) => handleMouseMove(event)}
               onMouseLeave={handleMouseLeave}
@@ -93,12 +83,17 @@ export const ImageListV1 = ({
               }
             />
             <div
-              style={{
-                textAlign: "center",
-                marginBottom: isMobileDevice ? 0 : 2,
-              }}
+              className={
+                isMobileDevice
+                  ? styles.captionContainerMobile
+                  : styles.captionContainer
+              }
             >
-              <Typography fontSize={18} fontWeight={100}>
+              <Typography
+                className={
+                  isMobileDevice ? styles.captionMobile : styles.caption
+                }
+              >
                 {image.caption}
               </Typography>
             </div>

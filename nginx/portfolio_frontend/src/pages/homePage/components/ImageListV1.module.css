@@ -36,3 +36,45 @@
   transform-style: preserve-3d;
   cursor: pointer;
 }
+
+.imageHorizontal,
+.imageVertical {
+  transition: filter 0.1s ease-in-out !important;
+}
+.imageListItem:hover .imageHorizontal,
+.imageListItem:hover .imageVertical {
+  filter: brightness(50%);
+}
+
+.captionContainer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.captionContainerMobile {
+  text-align: center;
+  margin-bottom: 2;
+}
+
+.caption {
+  font-size: 18;
+  font-weight: 100;
+  color: whitesmoke;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.captionMobile {
+  font-size: 18;
+  font-weight: 100;
+}
+
+.imageListItem:hover .caption {
+  opacity: 1;
+}

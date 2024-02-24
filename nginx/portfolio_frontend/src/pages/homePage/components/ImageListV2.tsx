@@ -1,23 +1,13 @@
 import { Divider, Grid, Typography } from "@mui/material";
 import styles from "./ImageListV1.module.css";
-
-interface Image {
-  uuid: string;
-  created_at: string;
-  media_file: string;
-  filter: string;
-  client: string;
-  file_name: string;
-  caption: string;
-  is_landscape: boolean;
-}
+import { Image } from "../../../api/types";
 
 interface ImageListV1Props {
   images: Image[];
   handleImageClick: (image: Image) => void;
 }
 
-export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
+export const ImageListV2 = ({ images, handleImageClick }: ImageListV1Props) => {
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const tiltContainer = event.currentTarget;
     const tiltBox = tiltContainer.getBoundingClientRect();
@@ -74,7 +64,7 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
           >
             <div className={styles.imageContainer}>
               <img
-                src={image.media_file}
+                src={image.media_file_thumb}
                 alt={image.created_at}
                 onClick={() => handleImageClick(image)}
                 className={
@@ -87,7 +77,7 @@ export const ImageListV1 = ({ images, handleImageClick }: ImageListV1Props) => {
           </div>
           <div style={{ textAlign: "left" }}>
             <Typography fontSize={12}>{image.filter}</Typography>
-            <Divider style={{width: "2rem"}}/>
+            <Divider style={{ width: "2rem" }} />
             <Typography
               style={{ fontWeight: "bold" }}
               fontSize={18}
