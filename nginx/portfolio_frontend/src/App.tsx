@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./styles/App.css";
 import { Route, Routes } from "react-router-dom";
 import { createCustomTheme } from "./utils/createCustomTheme";
@@ -16,7 +16,6 @@ import { Footer } from "./components/footer/Footer";
 import { DatenschutzerPage } from "./pages/datenschutzer/DatenschutzerPage";
 import { ImpressumPage } from "./pages/impressum/ImpressumPage";
 import { FooterMobile } from "./components/footer/FooterMobile";
-import { QuickScrollUp } from "./components/quickScrollUp/QuickScrollUp";
 import { PortraitPage } from "./pages/portraitPage/PortraitPage";
 import { TopBarV2 } from "./components/topBar/TopBarV2";
 import { CommercialPage } from "./pages/commercialPage/CommercialPage";
